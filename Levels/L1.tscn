@@ -1,0 +1,227 @@
+[gd_scene load_steps=16 format=3 uid="uid://53sb1wey3138"]
+
+[ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_e5n58"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5n58"]
+sky_top_color = Color(0.0330663, 0.0569178, 0.11758, 1)
+sky_horizon_color = Color(0.1322, 0.116509, 0.185996, 1)
+sky_curve = 0.0808197
+ground_bottom_color = Color(0.091429, 0.0734728, 0.0526127, 1)
+ground_horizon_color = Color(0.0902904, 0.0935947, 0.0988112, 1)
+sun_angle_max = 0.0
+sun_curve = 3364.41
+
+[sub_resource type="Sky" id="Sky_3iqwa"]
+sky_material = SubResource("ProceduralSkyMaterial_e5n58")
+
+[sub_resource type="Environment" id="Environment_x7s42"]
+background_mode = 2
+sky = SubResource("Sky_3iqwa")
+tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.282158, 0.299059, 0.344996, 1)
+volumetric_fog_length = 13.8
+adjustment_saturation = 0.49
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_e5n58"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 50.0
+
+[sub_resource type="Compositor" id="Compositor_e5n58"]
+compositor_effects = Array[CompositorEffect]([null])
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e5n58"]
+size = Vector2(60, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iqwa"]
+albedo_color = Color(0.0707965, 0.0707965, 0.0707965, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3iqwa"]
+size = Vector2(120, 120)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7s42"]
+albedo_color = Color(0.331079, 0.243272, 0.173652, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e5n58"]
+data = PackedVector3Array(60, 0, 60, -60, 0, 60, 60, 0, -60, -60, 0, 60, -60, 0, -60, 60, 0, -60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x7s42"]
+size = Vector3(5, 2, 7)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3iqwa"]
+data = PackedVector3Array(-2.5, 1, 3.5, 2.5, 1, 3.5, -2.5, -1, 3.5, 2.5, 1, 3.5, 2.5, -1, 3.5, -2.5, -1, 3.5, 2.5, 1, -3.5, -2.5, 1, -3.5, 2.5, -1, -3.5, -2.5, 1, -3.5, -2.5, -1, -3.5, 2.5, -1, -3.5, 2.5, 1, 3.5, 2.5, 1, -3.5, 2.5, -1, 3.5, 2.5, 1, -3.5, 2.5, -1, -3.5, 2.5, -1, 3.5, -2.5, 1, -3.5, -2.5, 1, 3.5, -2.5, -1, -3.5, -2.5, 1, 3.5, -2.5, -1, 3.5, -2.5, -1, -3.5, 2.5, 1, 3.5, -2.5, 1, 3.5, 2.5, 1, -3.5, -2.5, 1, 3.5, -2.5, 1, -3.5, 2.5, 1, -3.5, -2.5, -1, 3.5, 2.5, -1, 3.5, -2.5, -1, -3.5, 2.5, -1, 3.5, 2.5, -1, -3.5, -2.5, -1, -3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5n58"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3iqwa"]
+size = Vector3(2, 4, 2)
+
+[node name="L1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x7s42")
+camera_attributes = SubResource("CameraAttributesPractical_e5n58")
+compositor = SubResource("Compositor_e5n58")
+
+[node name="Car" parent="." instance=ExtResource("1_e5n58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28639, -0.158718, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.610155, 0.654934, 0.445839, 0.584395, -0.752004, 0.304913, 0.534971, 0.0745014, -0.841579, -4.60625, 0, -4.7038)
+light_color = Color(0.753829, 0.753829, 0.753829, 1)
+light_energy = 0.366
+light_indirect_energy = 0.0
+shadow_enabled = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Road" type="StaticBody3D" parent="Environment"]
+
+[node name="RoadMesh" type="MeshInstance3D" parent="Environment/Road"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.0567)
+gi_mode = 2
+mesh = SubResource("PlaneMesh_e5n58")
+surface_material_override/0 = SubResource("StandardMaterial3D_3iqwa")
+
+[node name="Ground" type="MeshInstance3D" parent="Environment/Road"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.294466, -25.0567)
+mesh = SubResource("PlaneMesh_3iqwa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_x7s42")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Road"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.294466, -25.0567)
+shape = SubResource("ConcavePolygonShape3D_e5n58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Road"]
+transform = Transform3D(1, 0, 0, 0, 0.953706, -0.300739, 0, 0.300739, 0.953706, 0, 0, -37.174)
+mesh = SubResource("BoxMesh_x7s42")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Environment/Road"]
+transform = Transform3D(1, 0, 0, 0, 0.953706, -0.300739, 0, 0.300739, 0.953706, 0, 0, -37.174)
+shape = SubResource("ConcavePolygonShape3D_3iqwa")
+
+[node name="Buildings" type="StaticBody3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 0.792503, -3.35422)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 0.792503, -21.624)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 0.792503, -10.8049)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 1.68321, -6.56484)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 1.68321, -29.1222)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 1.68321, -19.9726)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63003, 1.68321, -15.1074)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 0.792503, -3.35422)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 0.792503, -21.624)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 0.792503, -10.8049)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 1.68321, -6.56484)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 1.68321, -29.1222)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 1.68321, -19.9726)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2381, 1.68321, -15.1074)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, -13.6846, 0.792505, -57.7869)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, 4.57507, 0.792505, -58.3961)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, -6.23801, 0.792505, -58.0353)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, -10.4757, 1.68321, -57.8939)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, 12.0691, 1.68321, -58.6461)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, 2.92459, 1.68321, -58.341)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.0333471, 0, -0.999444, 0, 1, 0, 0.999444, 0, 0.0333471, -1.93791, 1.68321, -58.1788)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -29.768, 0.792505, -18.3046)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -30.3072, 0.792505, -36.5664)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -29.9879, 0.792505, -25.752)
+mesh = SubResource("BoxMesh_e5n58")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -29.8628, 1.68321, -21.5138)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -30.5284, 1.68321, -44.0613)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -30.2584, 1.68321, -34.9157)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Environment/Buildings"]
+transform = Transform3D(0.999564, 0, 0.0295093, 0, 1, 0, -0.0295093, 0, 0.999564, -30.1149, 1.68321, -30.0526)
+mesh = SubResource("BoxMesh_3iqwa")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.778977, -1.86876e-08, 0.627053, -0.627053, -2.32153e-08, 0.778977, 0, -1, -2.98023e-08, -0.404286, 3.73481, -19.0082)
+light_color = Color(0.67882, 0.517733, 0.231694, 1)
+light_energy = 16.0
+light_volumetric_fog_energy = 6.704
+shadow_enabled = true
+spot_angle = 30.52
