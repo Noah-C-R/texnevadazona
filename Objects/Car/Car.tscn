@@ -1,9 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6otghepp8ujy"]
+[gd_scene load_steps=15 format=3 uid="uid://b6otghepp8ujy"]
 
+[ext_resource type="Script" uid="uid://bemv2vx7qc6sg" path="res://Objects/Car/Car.gd" id="1_asns1"]
 [ext_resource type="Script" uid="uid://6d08qfmot8j7" path="res://Objects/Car/CarController.gd" id="1_d3qn3"]
+[ext_resource type="Script" uid="uid://m1em8b1ish3m" path="res://Objects/Car/DamageManager.gd" id="2_7jeou"]
+[ext_resource type="Script" uid="uid://b5m1knlqm83ar" path="res://Objects/Car/DamagePointWheel.gd" id="4_vbbil"]
+[ext_resource type="Script" uid="uid://btb44jiwff6gv" path="res://Objects/Car/Wheel.gd" id="6_g8ihv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3qn3"]
+size = Vector3(1.31055, 0.490234, 1.6978)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ctoy4"]
-size = Vector3(1, 1, 2)
+size = Vector3(1.48438, 0.490234, 2.59369)
 
 [sub_resource type="BoxMesh" id="BoxMesh_d3qn3"]
 
@@ -22,15 +29,22 @@ top_radius = 0.3
 bottom_radius = 0.3
 height = 0.1
 
-[node name="Car" type="VehicleBody3D"]
+[node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("damage_manager")]
 mass = 1000.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.35, 0)
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_asns1")
+damage_manager = NodePath("DamageManager")
 
 [node name="CarController" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body", "wheel_front_left", "wheel_front_right", "wheel_back_left", "wheel_back_right")]
 script = ExtResource("1_d3qn3")
 acceleration = 1500.0
 max_speed = 10.0
+reverse_acceleration = 700.0
+max_reverse_speed = 5.0
 boost_acceleration = 3000.0
 max_boost_speed = 20.0
 break_force = 30.0
@@ -38,14 +52,67 @@ steering_angle = 40.0
 steering_time_sec = 0.3
 steering_speed_mod = 5.0
 vehicle_body = NodePath("..")
-wheel_front_left = NodePath("../Wheel1")
-wheel_front_right = NodePath("../Wheel2")
-wheel_back_left = NodePath("../Wheel3")
-wheel_back_right = NodePath("../Wheel4")
+wheel_front_left = NodePath("../WheelFrontLeft")
+wheel_front_right = NodePath("../WheelFrontRight")
+wheel_back_left = NodePath("../WheelBackLeft")
+wheel_back_right = NodePath("../WheelBackRight")
 metadata/_custom_type_script = "uid://6d08qfmot8j7"
 
+[node name="DamageManager" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body")]
+script = ExtResource("2_7jeou")
+vehicle_body = NodePath("..")
+metadata/_custom_type_script = "uid://m1em8b1ish3m"
+
+[node name="FrontLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, -1.05683)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelFrontLeft")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="FrontRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, -1.057)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelFrontRight")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="BackLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, 1.55337)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelBackLeft")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="BackRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, 1.5532)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelBackRight")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28867, 0.400185)
+shape = SubResource("BoxShape3D_d3qn3")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05904, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.804157, 0.296844)
 shape = SubResource("BoxShape3D_ctoy4")
 
 [node name="First" type="Camera3D" parent="."]
@@ -95,7 +162,7 @@ mesh = SubResource("CylinderMesh_slanq")
 transform = Transform3D(0.0668988, 0, 0, 0, 0.555382, 0, 0, 0, 1, -0.638887, 0.199246, -0.0607455)
 mesh = SubResource("BoxMesh_slanq")
 
-[node name="Wheel1" type="VehicleWheel3D" parent="."]
+[node name="WheelFrontLeft" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-0.999824, -0.0187437, -8.74228e-08, -0.0187437, 0.999824, 0, 8.74074e-08, 1.63863e-09, -1, -0.694776, 0.46048, -0.562501)
 use_as_steering = true
 wheel_radius = 0.3
@@ -103,12 +170,14 @@ suspension_stiffness = 100.0
 suspension_max_force = 10000.0
 damping_compression = 2.0
 damping_relaxation = 3.0
+script = ExtResource("6_g8ihv")
+metadata/_custom_type_script = "uid://btb44jiwff6gv"
 
-[node name="WheelMesh" type="MeshInstance3D" parent="Wheel1"]
+[node name="WheelMesh" type="MeshInstance3D" parent="WheelFrontLeft"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d3qn3")
 
-[node name="Wheel2" type="VehicleWheel3D" parent="."]
+[node name="WheelFrontRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-0.999824, -0.0187437, -8.74228e-08, -0.0187437, 0.999824, 0, 8.74074e-08, 1.63863e-09, -1, 0.691183, 0.46048, -0.563)
 use_as_steering = true
 wheel_radius = 0.3
@@ -116,12 +185,14 @@ suspension_stiffness = 100.0
 suspension_max_force = 10000.0
 damping_compression = 2.0
 damping_relaxation = 3.0
+script = ExtResource("6_g8ihv")
+metadata/_custom_type_script = "uid://btb44jiwff6gv"
 
-[node name="WheelMesh" type="MeshInstance3D" parent="Wheel2"]
+[node name="WheelMesh" type="MeshInstance3D" parent="WheelFrontRight"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d3qn3")
 
-[node name="Wheel3" type="VehicleWheel3D" parent="."]
+[node name="WheelBackLeft" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-0.999824, -0.0187437, -8.74228e-08, -0.0187437, 0.999824, 0, 8.74074e-08, 1.63863e-09, -1, -0.694776, 0.46048, 1.17464)
 use_as_traction = true
 wheel_radius = 0.3
@@ -129,12 +200,14 @@ suspension_stiffness = 100.0
 suspension_max_force = 10000.0
 damping_compression = 2.0
 damping_relaxation = 3.0
+script = ExtResource("6_g8ihv")
+metadata/_custom_type_script = "uid://btb44jiwff6gv"
 
-[node name="WheelMesh" type="MeshInstance3D" parent="Wheel3"]
+[node name="WheelMesh" type="MeshInstance3D" parent="WheelBackLeft"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d3qn3")
 
-[node name="Wheel4" type="VehicleWheel3D" parent="."]
+[node name="WheelBackRight" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-0.999824, -0.0187437, -8.74228e-08, -0.0187437, 0.999824, 0, 8.74074e-08, 1.63863e-09, -1, 0.695, 0.46, 1.175)
 use_as_traction = true
 wheel_radius = 0.3
@@ -142,25 +215,27 @@ suspension_stiffness = 100.0
 suspension_max_force = 10000.0
 damping_compression = 2.0
 damping_relaxation = 3.0
+script = ExtResource("6_g8ihv")
+metadata/_custom_type_script = "uid://btb44jiwff6gv"
 
-[node name="WheelMesh" type="MeshInstance3D" parent="Wheel4"]
+[node name="WheelMesh" type="MeshInstance3D" parent="WheelBackRight"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d3qn3")
 
 [node name="HeadlightL" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, -0.493694, 0.792213, -1.02224)
 light_color = Color(0.807053, 0.769744, 0.65091, 1)
-light_energy = 8.195
+light_energy = 13.24
 light_volumetric_fog_energy = 3.423
 shadow_enabled = true
-spot_range = 11.862
+spot_range = 562.709
 spot_angle = 23.74
 
 [node name="HeadlightR" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, 0.494, 0.792012, -1.02199)
 light_color = Color(0.807053, 0.769744, 0.65091, 1)
-light_energy = 8.195
+light_energy = 13.24
 light_volumetric_fog_energy = 3.423
 shadow_enabled = true
-spot_range = 11.862
+spot_range = 562.709
 spot_angle = 23.74
