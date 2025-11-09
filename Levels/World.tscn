@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba3h7jammnsf0"]
+
+[ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
+[ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8ol0e"]
+sky_top_color = Color(0.224163, 0.297872, 0.48166, 1)
+sky_horizon_color = Color(0.524991, 0.299483, 0.463586, 1)
+sky_curve = 0.0808197
+ground_bottom_color = Color(0.091429, 0.0734728, 0.0526127, 1)
+ground_horizon_color = Color(0.0902904, 0.0935947, 0.0988112, 1)
+sun_angle_max = 0.0
+sun_curve = 3364.41
+
+[sub_resource type="Sky" id="Sky_3iqwa"]
+sky_material = SubResource("ProceduralSkyMaterial_8ol0e")
+
+[sub_resource type="Environment" id="Environment_hmvop"]
+background_mode = 2
+sky = SubResource("Sky_3iqwa")
+tonemap_mode = 4
+ssr_enabled = true
+ssao_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.282158, 0.299059, 0.344996, 1)
+volumetric_fog_length = 13.8
+adjustment_saturation = 0.49
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_j5go0"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 70.0
+dof_blur_far_transition = 40.0
+dof_blur_amount = 0.09
+
+[node name="World" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer"]
+environment = SubResource("Environment_hmvop")
+camera_attributes = SubResource("CameraAttributesPractical_j5go0")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Car" parent="." instance=ExtResource("1_u3tya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28639, -0.158718, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.610155, 0.654934, 0.445839, 0.584395, -0.752004, 0.304913, 0.534971, 0.0745014, -0.841579, -4.60625, 0, -4.7038)
+light_color = Color(0.753829, 0.753829, 0.753829, 1)
+light_energy = 0.366
+light_indirect_energy = 0.0
+shadow_enabled = true
+
+[node name="L1" parent="." instance=ExtResource("2_8ol0e")]
