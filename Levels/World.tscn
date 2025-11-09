@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=9 format=3 uid="uid://ba3h7jammnsf0"]
 
+[ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
 [ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
 
@@ -12,12 +13,12 @@ ground_horizon_color = Color(0.0902904, 0.0935947, 0.0988112, 1)
 sun_angle_max = 0.0
 sun_curve = 3364.41
 
-[sub_resource type="Sky" id="Sky_3iqwa"]
+[sub_resource type="Sky" id="Sky_hmvop"]
 sky_material = SubResource("ProceduralSkyMaterial_8ol0e")
 
 [sub_resource type="Environment" id="Environment_hmvop"]
 background_mode = 2
-sky = SubResource("Sky_3iqwa")
+sky = SubResource("Sky_hmvop")
 tonemap_mode = 4
 ssr_enabled = true
 ssao_enabled = true
@@ -32,20 +33,12 @@ dof_blur_far_distance = 70.0
 dof_blur_far_transition = 40.0
 dof_blur_amount = 0.09
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5go0"]
+shader = ExtResource("1_hmvop")
+shader_parameter/pixel_size = 4
+shader_parameter/screen_size = Vector2(1920, 1080)
+
 [node name="World" type="Node3D"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer"]
-environment = SubResource("Environment_hmvop")
-camera_attributes = SubResource("CameraAttributesPractical_j5go0")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Car" parent="." instance=ExtResource("1_u3tya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28639, -0.158718, 0)
@@ -58,3 +51,17 @@ light_indirect_energy = 0.0
 shadow_enabled = true
 
 [node name="L1" parent="." instance=ExtResource("2_8ol0e")]
+
+[node name="PostProcessing" type="CanvasLayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="PostProcessing"]
+environment = SubResource("Environment_hmvop")
+camera_attributes = SubResource("CameraAttributesPractical_j5go0")
+
+[node name="ColorRect" type="ColorRect" parent="PostProcessing"]
+material = SubResource("ShaderMaterial_j5go0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
