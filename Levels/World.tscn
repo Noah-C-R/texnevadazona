@@ -58,7 +58,7 @@ shadow_enabled = true
 environment = SubResource("Environment_hmvop")
 camera_attributes = SubResource("CameraAttributesPractical_j5go0")
 
-[node name="ColorRect" type="ColorRect" parent="PostProcessing"]
+[node name="Pixelate" type="ColorRect" parent="PostProcessing"]
 material = SubResource("ShaderMaterial_j5go0")
 anchors_preset = 15
 anchor_right = 1.0
