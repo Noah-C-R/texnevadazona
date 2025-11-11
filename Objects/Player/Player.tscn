@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://dk8in46delqm3"]
+
+[ext_resource type="Script" uid="uid://scsnp71gq7uy" path="res://Objects/Player/Player.gd" id="1_cac6a"]
+[ext_resource type="Script" uid="uid://beemms5n3cqsk" path="res://Objects/Player/PlayerController.gd" id="1_we6tp"]
+[ext_resource type="Shader" uid="uid://cr8nlyh757mo5" path="res://Shaders/Vibes.gdshader" id="2_oansn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_861e5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_861e5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_cac6a"]
+flip_faces = true
+size = Vector2(5, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0me6"]
+render_priority = 0
+shader = ExtResource("2_oansn")
+shader_parameter/zNear = 0.1
+shader_parameter/zFar = 400.0
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/enable_color_limit = false
+shader_parameter/color_levels = 8
+shader_parameter/enable_color_palette = true
+shader_parameter/color1 = Color(1, 0.925, 0.839, 1)
+shader_parameter/color2 = Color(1, 0.831, 0.639, 1)
+shader_parameter/color3 = Color(1, 0.667, 0.369, 1)
+shader_parameter/color4 = Color(0.816, 0.506, 0.349, 1)
+shader_parameter/color5 = Color(0.553, 0.412, 0.478, 1)
+shader_parameter/color6 = Color(0.152027, 0.208862, 0.350058, 1)
+shader_parameter/color7 = Color(0.0666207, 0.142589, 0.211637, 1)
+shader_parameter/color8 = Color(0.00736355, 0.0454528, 0.0912868, 1)
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.2
+
+[sub_resource type="Gradient" id="Gradient_cac6a"]
+offsets = PackedFloat32Array(0.115625, 0.155328)
+colors = PackedColorArray(0.681884, 0.681884, 0.681884, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b0me6"]
+gradient = SubResource("Gradient_cac6a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "player_controller", "collision_shape", "hand_raycast", "pointer")]
+script = ExtResource("1_cac6a")
+camera = NodePath("Head/Camera3D")
+player_controller = NodePath("PlayerController")
+collision_shape = NodePath("CollisionShape3D")
+hand_raycast = NodePath("Head/HandRaycast")
+pointer = NodePath("CanvasLayer/CenterContainer/TextureRect")
+
+[node name="PlayerController" type="Node3D" parent="." node_paths=PackedStringArray("c_body", "head")]
+script = ExtResource("1_we6tp")
+c_body = NodePath("..")
+head = NodePath("../Head")
+walk_speed = 2.0
+metadata/_custom_type_script = "uid://beemms5n3cqsk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_861e5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_861e5")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52145, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.285399)
+
+[node name="Vibes" type="MeshInstance3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.568128)
+mesh = SubResource("QuadMesh_cac6a")
+surface_material_override/0 = SubResource("ShaderMaterial_b0me6")
+
+[node name="Flashlight" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494, -0.574702, -0.687437)
+light_color = Color(0.807053, 0.769744, 0.65091, 1)
+light_energy = 40.0
+light_volumetric_fog_energy = 3.423
+shadow_enabled = true
+spot_range = 700.0
+spot_angle = 23.74
+
+[node name="HandRaycast" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_b0me6")

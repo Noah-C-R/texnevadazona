@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=10 format=3 uid="uid://ba3h7jammnsf0"]
 
 [ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
 [ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
+[ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8ol0e"]
 sky_top_color = Color(0.224163, 0.297872, 0.48166, 1)
@@ -65,3 +66,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Player" parent="." instance=ExtResource("4_j5go0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.24728)
