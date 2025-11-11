@@ -27,20 +27,35 @@ var forward_velocity_mag : float
 var steering_mag : float
 var steering_tween : Tween
 
+var last_active_engine_state : String
+var last_active_steer_state : String
+
+func set_active():
+	engine_sm.transfer(last_active_engine_state)
+	steering_sm.transfer(last_active_steer_state)
+
+func set_inactive():
+	last_active_engine_state = engine_sm.current_state.state_name
+	last_active_steer_state = steering_sm.current_state.state_name
+	engine_sm.transfer("None")
+	steering_sm.transfer("None")
+
 func _ready() -> void:
 	steering_tween = create_tween()
 	engine_sm = StateMachine.create(self)
 	steering_sm = StateMachine.create(self)
 	
-	#engine_sm.debug = true
-	#steering_sm.debug = true
+	engine_sm.debug = true
 	
+	engine_sm.add_state("None")
 	engine_sm.add_state("Idle", engine_idle_enter, null, engine_idle_phys)
 	engine_sm.add_state("Accelerate", engine_accelerate_enter, null, engine_accelerate_phys)
 	engine_sm.add_state("Break", engine_break_enter, null, engine_break_phys, engine_break_exit)
 	engine_sm.add_state("Reverse", engine_reverse_enter, null, engine_reverse_phys, engine_boost_exit)
 	engine_sm.add_state("Boost", engine_boost_enter, null, engine_boost_phys, engine_boost_exit)
+	engine_sm.add_state("Park", engine_park_enter, null, engine_park_phys)
 	
+	steering_sm.add_state("None")
 	steering_sm.add_state("Center", steering_center_enter, null, steering_center_process)
 	steering_sm.add_state("Left", steering_left_enter, null, steering_left_phys)
 	steering_sm.add_state("Right", steering_right_enter, null, steering_right_phys)
@@ -51,6 +66,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	forward_velocity_mag = abs((vehicle_body.linear_velocity * vehicle_body.transform.basis.z).length())
 	steering_mag = remap(forward_velocity_mag, 0, max_speed, 1, steering_speed_mod)
+	print(forward_velocity_mag)
 
 func set_steer(val):
 	wheel_front_left.steer_val = val
@@ -73,6 +89,8 @@ func engine_idle_phys(delta : float):
 		engine_sm.transfer("Accelerate")
 	elif Input.is_action_pressed("Car_Break"):
 		engine_sm.transfer("Break")
+	elif Input.is_action_just_released("Car_Park"):
+		engine_sm.transfer("Park")
 	
 func engine_accelerate_enter():
 	set_accel(acceleration)
@@ -130,6 +148,15 @@ func engine_boost_phys(delta : float):
 		
 func engine_boost_exit():
 	set_accel(0)
+
+func engine_park_enter():
+	set_break(1000)
+	set_accel(0)
+
+func engine_park_phys(delta : float):
+	if Input.is_action_just_released("Car_Park"):
+		set_break(0)
+		engine_sm.transfer("Idle")
 
 func steering_center_enter():
 	if steering_tween:

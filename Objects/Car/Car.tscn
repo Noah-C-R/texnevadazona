@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6otghepp8ujy"]
+[gd_scene load_steps=23 format=3 uid="uid://b6otghepp8ujy"]
 
 [ext_resource type="Script" uid="uid://bemv2vx7qc6sg" path="res://Objects/Car/Car.gd" id="1_asns1"]
 [ext_resource type="Script" uid="uid://6d08qfmot8j7" path="res://Objects/Car/CarController.gd" id="1_d3qn3"]
 [ext_resource type="Script" uid="uid://m1em8b1ish3m" path="res://Objects/Car/DamageManager.gd" id="2_7jeou"]
 [ext_resource type="Script" uid="uid://b5m1knlqm83ar" path="res://Objects/Car/DamagePointWheel.gd" id="4_vbbil"]
+[ext_resource type="Script" uid="uid://b8f2richot70v" path="res://Objects/Car/InteractManager.gd" id="5_38cnr"]
 [ext_resource type="Shader" uid="uid://cr8nlyh757mo5" path="res://Shaders/Vibes.gdshader" id="5_g8ihv"]
+[ext_resource type="Script" uid="uid://da1bwn36r5r4c" path="res://Objects/Car/InteractPoint.gd" id="6_8yn5f"]
 [ext_resource type="Script" uid="uid://btb44jiwff6gv" path="res://Objects/Car/Wheel.gd" id="6_g8ihv"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_d3qn3"]
@@ -65,7 +67,7 @@ size = Vector2(0.2, 0.1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ihv"]
 albedo_color = Color(0.0866598, 0.0884202, 0.188942, 1)
 
-[node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("damage_manager")]
+[node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("damage_manager", "interact_manager", "car_controller", "camera", "car_exit")]
 mass = 1000.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.35, 0)
@@ -74,6 +76,87 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_asns1")
 damage_manager = NodePath("DamageManager")
+interact_manager = NodePath("InteractManager")
+car_controller = NodePath("CarController")
+camera = NodePath("CameraFront")
+car_exit = NodePath("CarExit")
+
+[node name="CarController" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body", "wheel_front_left", "wheel_front_right", "wheel_back_left", "wheel_back_right")]
+script = ExtResource("1_d3qn3")
+acceleration = 3000.0
+max_speed = 15.0
+reverse_acceleration = 700.0
+max_reverse_speed = 5.0
+boost_acceleration = 2000.0
+max_boost_speed = 15.0
+break_force = 30.0
+steering_angle = 35.0
+steering_time_sec = 0.4
+steering_speed_mod = 5.0
+vehicle_body = NodePath("..")
+wheel_front_left = NodePath("../WheelFrontLeft")
+wheel_front_right = NodePath("../WheelFrontRight")
+wheel_back_left = NodePath("../WheelBackLeft")
+wheel_back_right = NodePath("../WheelBackRight")
+metadata/_custom_type_script = "uid://6d08qfmot8j7"
+
+[node name="DamageManager" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body")]
+script = ExtResource("2_7jeou")
+vehicle_body = NodePath("..")
+metadata/_custom_type_script = "uid://m1em8b1ish3m"
+
+[node name="FrontLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, -1.05683)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelFrontLeft")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="FrontRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, -1.057)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelFrontRight")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="BackLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, 1.55337)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelBackLeft")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="BackRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, 1.5532)
+script = ExtResource("4_vbbil")
+wheel = NodePath("../../WheelBackRight")
+health = 100.0
+max_health = 100.0
+influence = 0.5
+damaged_level = 40.0
+broken_level = 10.0
+metadata/_custom_type_script = "uid://06jwop6u8obp"
+
+[node name="InteractManager" type="Node3D" parent="."]
+script = ExtResource("5_38cnr")
+metadata/_custom_type_script = "uid://b8f2richot70v"
+
+[node name="CarDoor" type="Marker3D" parent="InteractManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.727903, 0.821075, 0)
+script = ExtResource("6_8yn5f")
+metadata/_custom_type_script = "uid://da1bwn36r5r4c"
 
 [node name="WheelFrontLeft" type="VehicleWheel3D" parent="."]
 transform = Transform3D(-0.999824, -0.0187437, -8.74228e-08, -0.0187437, 0.999824, 0, 8.74074e-08, 1.63863e-09, -1, -0.694776, 0.46048, -0.562501)
@@ -135,74 +218,6 @@ metadata/_custom_type_script = "uid://btb44jiwff6gv"
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_d3qn3")
 
-[node name="CarController" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body", "wheel_front_left", "wheel_front_right", "wheel_back_left", "wheel_back_right")]
-script = ExtResource("1_d3qn3")
-acceleration = 1500.0
-max_speed = 10.0
-reverse_acceleration = 700.0
-max_reverse_speed = 5.0
-boost_acceleration = 3000.0
-max_boost_speed = 20.0
-break_force = 30.0
-steering_angle = 35.0
-steering_time_sec = 0.4
-steering_speed_mod = 5.0
-vehicle_body = NodePath("..")
-wheel_front_left = NodePath("../WheelFrontLeft")
-wheel_front_right = NodePath("../WheelFrontRight")
-wheel_back_left = NodePath("../WheelBackLeft")
-wheel_back_right = NodePath("../WheelBackRight")
-metadata/_custom_type_script = "uid://6d08qfmot8j7"
-
-[node name="DamageManager" type="Node3D" parent="." node_paths=PackedStringArray("vehicle_body")]
-script = ExtResource("2_7jeou")
-vehicle_body = NodePath("..")
-metadata/_custom_type_script = "uid://m1em8b1ish3m"
-
-[node name="FrontLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, -1.05683)
-script = ExtResource("4_vbbil")
-wheel = NodePath("../../WheelFrontLeft")
-health = 100.0
-max_health = 100.0
-influence = 0.5
-damaged_level = 40.0
-broken_level = 10.0
-metadata/_custom_type_script = "uid://06jwop6u8obp"
-
-[node name="FrontRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, -1.057)
-script = ExtResource("4_vbbil")
-wheel = NodePath("../../WheelFrontRight")
-health = 100.0
-max_health = 100.0
-influence = 0.5
-damaged_level = 40.0
-broken_level = 10.0
-metadata/_custom_type_script = "uid://06jwop6u8obp"
-
-[node name="BackLeftWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681062, 0.77857, 1.55337)
-script = ExtResource("4_vbbil")
-wheel = NodePath("../../WheelBackLeft")
-health = 100.0
-max_health = 100.0
-influence = 0.5
-damaged_level = 40.0
-broken_level = 10.0
-metadata/_custom_type_script = "uid://06jwop6u8obp"
-
-[node name="BackRightWheel" type="Marker3D" parent="DamageManager" node_paths=PackedStringArray("wheel")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.681, 0.779, 1.5532)
-script = ExtResource("4_vbbil")
-wheel = NodePath("../../WheelBackRight")
-health = 100.0
-max_health = 100.0
-influence = 0.5
-damaged_level = 40.0
-broken_level = 10.0
-metadata/_custom_type_script = "uid://06jwop6u8obp"
-
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28867, 0.400185)
 shape = SubResource("BoxShape3D_d3qn3")
@@ -213,7 +228,6 @@ shape = SubResource("BoxShape3D_ctoy4")
 
 [node name="CameraFront" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325854, 1.3006, 0.0214602)
-current = true
 
 [node name="Vibes" type="MeshInstance3D" parent="CameraFront"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.568128)
@@ -286,3 +300,6 @@ light_volumetric_fog_energy = 3.423
 shadow_enabled = true
 spot_range = 700.0
 spot_angle = 23.74
+
+[node name="CarExit" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76992, 0.291304, -0.241611)
