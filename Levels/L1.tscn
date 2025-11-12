@@ -1,11 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://53sb1wey3138"]
+[gd_scene load_steps=13 format=3 uid="uid://53sb1wey3138"]
 
 [ext_resource type="Script" uid="uid://cfnxilngo2aur" path="res://addons/road-generator/nodes/road_manager.gd" id="1_x7s42"]
 [ext_resource type="Script" uid="uid://dmrnbjqssh63k" path="res://addons/road-generator/nodes/road_container.gd" id="2_nj501"]
 [ext_resource type="Script" uid="uid://qgg77vmyegsk" path="res://addons/road-generator/nodes/road_point.gd" id="3_mxxoj"]
+[ext_resource type="Material" uid="uid://dpashsuk5lr4x" path="res://addons/road-generator/resources/road_texture.material" id="3_nj501"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nj501"]
 size = Vector3(3, 6, 3)
+
+[sub_resource type="Gradient" id="Gradient_nj501"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mxxoj"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xfefq"]
+seamless = true
+color_ramp = SubResource("Gradient_nj501")
+noise = SubResource("FastNoiseLite_mxxoj")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_82xys"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.87,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_xfefq"),
+&"projection_angular_division": 2.0,
+&"projection_threshold": 0.8,
+&"world_space_normal_blend": true
+}
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuhti"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_yqckx"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_vuhti")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_dm4ld"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_yqckx")])
 
 [node name="L1" type="Node3D"]
 
@@ -29,13 +96,14 @@ metadata/_custom_type_script = "uid://cfnxilngo2aur"
 
 [node name="RoadContainer" type="Node3D" parent="RoadManager"]
 script = ExtResource("2_nj501")
+material_resource = ExtResource("3_nj501")
 density = 1.0
 use_lowpoly_preview = true
-edge_containers = Array[NodePath]([NodePath(""), NodePath(""), NodePath(""), NodePath("")])
-edge_rp_targets = Array[NodePath]([NodePath(""), NodePath(""), NodePath(""), NodePath("")])
-edge_rp_target_dirs = Array[int]([-1, -1, -1, -1])
-edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_002"), NodePath("@Node3D@180251"), NodePath("@Node3D@180251")])
-edge_rp_local_dirs = Array[int]([0, 1, 0, 1])
+edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_target_dirs = Array[int]([-1, -1])
+edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_002")])
+edge_rp_local_dirs = Array[int]([0, 0])
 metadata/_custom_type_script = "uid://dmrnbjqssh63k"
 
 [node name="RP_001" type="Node3D" parent="RoadManager/RoadContainer"]
@@ -47,10 +115,18 @@ next_mag = 13.1632
 prior_pt_init = NodePath("../RP_002")
 
 [node name="RP_002" type="Node3D" parent="RoadManager/RoadContainer"]
-transform = Transform3D(0.455607, 0.0077682, -0.890147, -3.69508e-10, 0.999962, 0.00872653, 0.890181, -0.00397587, 0.45559, 57.3129, 0, -137.892)
+transform = Transform3D(-0.992912, -0.00103719, -0.118851, 2.88352e-09, 0.999962, -0.00872653, 0.118855, -0.00866468, -0.992874, 0.892986, 0, -137.892)
 script = ExtResource("3_mxxoj")
 traffic_dir = Array[int]([2, 1])
 lanes = Array[int]([5, 5])
-prior_mag = 27.9545
-next_mag = 51.8935
-next_pt_init = NodePath("../RP_001")
+prior_mag = 21.9621
+next_mag = 24.4811
+prior_pt_init = NodePath("../RP_001")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://TerrainData"
+material = SubResource("Terrain3DMaterial_82xys")
+assets = SubResource("Terrain3DAssets_dm4ld")
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true
