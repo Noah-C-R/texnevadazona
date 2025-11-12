@@ -51,7 +51,7 @@ const mat3 Gy = mat3(
 				vec3(-1,0,1)
 );
 
-// (1) 
+// (1)
 // Calculating the scaled depth buffer, converting the depth from clip space, into view space.
 float depth(sampler2D depth_texture, vec2 screen_uv, mat4 inv_proj_mat, in vec3 vertex)
 {
@@ -129,7 +129,7 @@ float sobel_normal(in vec2 uv, in vec2 offset)
 // Meanwhile, the "levels" integer is the number of colors we want to "allow" within the color posterization.
 // This function will take the input rgb float value, multiply it by the number of levels, and then round it to the nearest int.
 // Then, lastly, it'll be divided again by the number of color levels, to bring it back to an rgb float value that falls between 0.0 and 1.0
-// while still being affected by the rounding. 
+// while still being affected by the rounding.
 
 //There are likely better ways to handle this, but this was my first implementation and it worked well enough for this project.
 float posterize(float val, int levels)
@@ -139,7 +139,7 @@ float posterize(float val, int levels)
 
 
 // The dithering is fairly heavy handed, and is applied directly to the screen-space quad. This results
-// in a full-screen "darkening" of sorts, instead of just being applied to the actual materials of objects 
+// in a full-screen "darkening" of sorts, instead of just being applied to the actual materials of objects
 // to "fix" the color banding from the posterization, like it probably should be.
 // Because of that, there are definitely better ways to implement this, and I'd definitely re-do it in the future.
 float dither(vec2 position, float brightness)
@@ -183,7 +183,7 @@ void fragment() {
 	{
 		// Posterizes the fragment's color using the limit value set in "color_levels"
 		final_color = vec3(posterize(final_color.r,color_levels),posterize(final_color.g,color_levels),posterize(final_color.b,color_levels));
-		
+
 	}
 
 	if (enable_color_palette)
@@ -220,7 +220,7 @@ void fragment() {
 		brightness += dither_strength * (dither(FRAGCOORD.xy, brightness) -0.5);
 		final_color *= (1.0 + dither_strength * (dither(FRAGCOORD.xy, brightness) -0.5));
 	}
-	
+
 	if(enable_outline)
 	{
 		vec2 offset = outline_thickness / VIEWPORT_SIZE;
@@ -228,14 +228,14 @@ void fragment() {
 
 		//Calculates the scaled depth for the current fragment
 		float depth = depth(DEPTH_TEXTURE, uv, INV_PROJECTION_MATRIX,VERTEX);
-	
+
 		vec3 pixel_color = texture(SCREEN_TEXTURE, uv).rgb;
-		
+
 		//Performs the sobel operation on both the depth and normal
 		float edge_depth = sobel_depth(uv, offset, VERTEX, INV_PROJECTION_MATRIX);
 		float edge_normal = sobel_normal(uv, offset);
-		
-		//Using the results, we utilie smoothstep to combine the results of the 
+
+		//Using the results, we utilie smoothstep to combine the results of the
 		// depth and normal calculations, to get our "final" outline calculations.
 		float outline = smoothstep(0.0,1.0,10.0 * edge_depth + edge_normal);
 
@@ -243,8 +243,8 @@ void fragment() {
 		// actual finished outlines, and are mixed with the final color.
 		final_color = mix(final_color, outline_color, outline);
 	}
-	
-	
+
+
 	//The combined results of all of the effects are then output to the quad's albedo, displaying them on the screen.
 	ALBEDO = final_color;
 }
