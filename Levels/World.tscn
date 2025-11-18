@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=16 format=3 uid="uid://ba3h7jammnsf0"]
 
 [ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
 [ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
+[ext_resource type="Script" uid="uid://coeyimpnwiuvc" path="res://Systems/Levels/Loadstone.gd" id="3_iyc8y"]
+[ext_resource type="Script" uid="uid://71gypy8ehcg8" path="res://Systems/Levels/Levels.gd" id="3_v72nc"]
+[ext_resource type="PackedScene" uid="uid://dntb2ay2toglk" path="res://Levels/L2.tscn" id="4_53g8k"]
 [ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
 [ext_resource type="Shader" uid="uid://cxp0inxqlmxsr" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
 
@@ -75,7 +78,27 @@ light_energy = 0.366
 light_indirect_energy = 0.0
 shadow_enabled = true
 
-[node name="L1" parent="." instance=ExtResource("2_8ol0e")]
+[node name="Loadstones" type="Node3D" parent="."]
+
+[node name="Loadstone" type="Marker3D" parent="Loadstones" node_paths=PackedStringArray("level_parent")]
+script = ExtResource("3_iyc8y")
+level_scn = ExtResource("2_8ol0e")
+level_parent = NodePath("../../Levels")
+metadata/_custom_type_script = "uid://coeyimpnwiuvc"
+
+[node name="Loadstone2" type="Marker3D" parent="Loadstones" node_paths=PackedStringArray("level_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
+script = ExtResource("3_iyc8y")
+level_scn = ExtResource("4_53g8k")
+level_parent = NodePath("../../Levels")
+metadata/_custom_type_script = "uid://coeyimpnwiuvc"
+
+[node name="Levels" type="Node3D" parent="."]
+script = ExtResource("3_v72nc")
+
+[node name="L1" parent="Levels" instance=ExtResource("2_8ol0e")]
+
+[node name="L2" parent="Levels" instance=ExtResource("4_53g8k")]
 
 [node name="PostProcessing" type="CanvasLayer" parent="."]
 
