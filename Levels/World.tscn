@@ -1,9 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=16 format=3 uid="uid://ba3h7jammnsf0"]
 
 [ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
 [ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
+[ext_resource type="Script" uid="uid://coeyimpnwiuvc" path="res://Systems/Levels/Loadstone.gd" id="3_iyc8y"]
+[ext_resource type="Script" uid="uid://71gypy8ehcg8" path="res://Systems/Levels/Levels.gd" id="3_v72nc"]
+[ext_resource type="PackedScene" uid="uid://dntb2ay2toglk" path="res://Levels/L2.tscn" id="4_53g8k"]
 [ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
+[ext_resource type="Shader" uid="uid://cxp0inxqlmxsr" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53g8k"]
+render_priority = 1
+shader = ExtResource("5_m3j4o")
+shader_parameter/noise_scale = 20.0
+shader_parameter/speed = 0.06
+shader_parameter/darkness_amount = 9.155
+shader_parameter/detail = 0.23
+shader_parameter/concentration = 0.0
+shader_parameter/amount = 0.12
+shader_parameter/bloom = 2.0
+shader_parameter/alpha = 8.0
+shader_parameter/cloud_tint = Color(0.108209, 0.126261, 0.207869, 1)
+shader_parameter/edge_fade = -0.035
+shader_parameter/rotation_matrix = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m3j4o"]
+size = Vector2(10000, 10000)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8ol0e"]
 sky_top_color = Color(0.224163, 0.297872, 0.48166, 1)
@@ -41,6 +63,11 @@ shader_parameter/screen_size = Vector2(1920, 1080)
 
 [node name="World" type="Node3D"]
 
+[node name="Clouds" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
+material_override = SubResource("ShaderMaterial_53g8k")
+mesh = SubResource("PlaneMesh_m3j4o")
+
 [node name="Car" parent="." instance=ExtResource("1_u3tya")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28639, -0.158718, 0)
 
@@ -51,7 +78,27 @@ light_energy = 0.366
 light_indirect_energy = 0.0
 shadow_enabled = true
 
-[node name="L1" parent="." instance=ExtResource("2_8ol0e")]
+[node name="Loadstones" type="Node3D" parent="."]
+
+[node name="Loadstone" type="Marker3D" parent="Loadstones" node_paths=PackedStringArray("level_parent")]
+script = ExtResource("3_iyc8y")
+level_scn = ExtResource("2_8ol0e")
+level_parent = NodePath("../../Levels")
+metadata/_custom_type_script = "uid://coeyimpnwiuvc"
+
+[node name="Loadstone2" type="Marker3D" parent="Loadstones" node_paths=PackedStringArray("level_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -900)
+script = ExtResource("3_iyc8y")
+level_scn = ExtResource("4_53g8k")
+level_parent = NodePath("../../Levels")
+metadata/_custom_type_script = "uid://coeyimpnwiuvc"
+
+[node name="Levels" type="Node3D" parent="."]
+script = ExtResource("3_v72nc")
+
+[node name="L1" parent="Levels" instance=ExtResource("2_8ol0e")]
+
+[node name="L2" parent="Levels" instance=ExtResource("4_53g8k")]
 
 [node name="PostProcessing" type="CanvasLayer" parent="."]
 
