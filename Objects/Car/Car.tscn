@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6otghepp8ujy"]
+[gd_scene load_steps=27 format=3 uid="uid://b6otghepp8ujy"]
 
 [ext_resource type="Script" uid="uid://bemv2vx7qc6sg" path="res://Objects/Car/Car.gd" id="1_asns1"]
 [ext_resource type="Script" uid="uid://6d08qfmot8j7" path="res://Objects/Car/CarController.gd" id="1_d3qn3"]
@@ -52,6 +52,17 @@ shader_parameter/dither_strength = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_ctoy4"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_8yn5f"]
+viewport_path = NodePath("DashDialViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5k36m"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_8yn5f")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7oc1m"]
+material = SubResource("StandardMaterial3D_5k36m")
+size = Vector2(0.5, 0.25)
+
 [sub_resource type="BoxMesh" id="BoxMesh_asns1"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_slanq"]
@@ -66,6 +77,9 @@ size = Vector2(0.2, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ihv"]
 albedo_color = Color(0.0866598, 0.0884202, 0.188942, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8yn5f"]
+font_size = 50
 
 [node name="Car" type="VehicleBody3D" node_paths=PackedStringArray("damage_manager", "interact_manager", "car_controller", "camera", "car_exit")]
 mass = 1000.0
@@ -254,6 +268,11 @@ mesh = SubResource("BoxMesh_7jeou")
 transform = Transform3D(1.34383, 0, 0, 0, 0.267805, 0.028845, 0, -0.0804677, 0.0959991, 0, 0.370618, -0.492774)
 mesh = SubResource("BoxMesh_ctoy4")
 
+[node name="DashDials" type="MeshInstance3D" parent="Inside"]
+transform = Transform3D(1, 0, 0, 0, 0.351384, -0.936231, 0, 0.936231, 0.351384, -0.305479, 0.404656, -0.434099)
+mesh = SubResource("PlaneMesh_7oc1m")
+skeleton = NodePath("../Dash")
+
 [node name="Roof" type="MeshInstance3D" parent="Inside"]
 transform = Transform3D(1.36944, 0, 0, 0, 0.0611922, -0.00309778, 0, 0.000364193, 0.520492, 0, 1.01196, -0.205051)
 mesh = SubResource("BoxMesh_7jeou")
@@ -303,3 +322,30 @@ spot_angle = 23.74
 
 [node name="CarExit" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76992, 0.291304, -0.241611)
+
+[node name="DashDialViewport" type="SubViewport" parent="."]
+
+[node name="Control" type="ColorRect" parent="DashDialViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.837976, 0, 0.417759, 1)
+
+[node name="ColorRect" type="ColorRect" parent="DashDialViewport/Control"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 30.0
+offset_right = 295.0
+offset_bottom = 156.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="DashDialViewport/Control/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TEST TEXT"
+label_settings = SubResource("LabelSettings_8yn5f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
