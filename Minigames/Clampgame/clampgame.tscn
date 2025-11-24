@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://dghrh1jopsjdr"]
+
+[ext_resource type="Script" uid="uid://cyroj16ulsdm6" path="res://Minigames/Clampgame/clampgame.gd" id="1_ux4l4"]
+[ext_resource type="Texture2D" uid="uid://ts7u02fgl6xh" path="res://Minigames/Wiregame/Background.png" id="2_u5uy4"]
+[ext_resource type="Texture2D" uid="uid://c2o1xcj7nrnlf" path="res://Minigames/Clampgame/clamps.png" id="3_ux4l4"]
+[ext_resource type="Texture2D" uid="uid://bclal8im368p7" path="res://Minigames/Wiregame/Xbox_button_A.svg.png" id="4_j3euu"]
+[ext_resource type="Texture2D" uid="uid://cl3pd3eqby8y8" path="res://Minigames/Wiregame/Xbox_button_X.svg.png" id="5_50xjw"]
+[ext_resource type="Texture2D" uid="uid://lt6l3ji2ga8n" path="res://Minigames/Wiregame/Xbox_button_Y.svg.png" id="6_dl4ly"]
+[ext_resource type="Texture2D" uid="uid://cj28eoky81e1c" path="res://Minigames/Wiregame/Xbox_button_B.svg.png" id="7_yrbx6"]
+
+[node name="Clampgame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ux4l4")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u5uy4")
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 883.0
+offset_top = 58.0
+offset_right = -13.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ux4l4")
+stretch_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1340.0
+offset_top = 134.0
+offset_right = 1512.0
+offset_bottom = 1098.0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 543.0
+offset_right = 843.0
+offset_bottom = 1033.0
+theme_override_font_sizes/font_size = 40
+text = "Enter the correct key to tighten the
+clamp. Use the ← → ↑ ↓ LT RT
+buttons in order to progress"
+
+[node name="XboxButtonA_svg" type="Sprite2D" parent="TextEdit"]
+position = Vector2(736, 96)
+scale = Vector2(0.022, 0.022)
+texture = ExtResource("4_j3euu")
+
+[node name="XboxButtonX_svg" type="Sprite2D" parent="TextEdit"]
+position = Vector2(585, 96)
+scale = Vector2(0.022, 0.022)
+texture = ExtResource("5_50xjw")
+
+[node name="XboxButtonY_svg" type="Sprite2D" parent="TextEdit"]
+position = Vector2(635, 96)
+scale = Vector2(0.022, 0.022)
+texture = ExtResource("6_dl4ly")
+
+[node name="XboxButtonB_svg" type="Sprite2D" parent="TextEdit"]
+position = Vector2(687, 96)
+scale = Vector2(0.022, 0.022)
+texture = ExtResource("7_yrbx6")
+
+[node name="Lane" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1126.0
+offset_top = -383.0
+offset_right = -188.0
+offset_bottom = -364.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 55.0
+offset_right = 1796.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 60
+text = "Tighten the clamp!"

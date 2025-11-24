@@ -14,8 +14,8 @@ const COLORS = [
 ]
 
 var num_wires : int
-var bottom_colors : Array        # order at the bottom
-var top_colors : Array           # order at the top
+var bottom_colors : Array
+var top_colors : Array
 
 var bottom_slots = []
 var top_slots = []
@@ -23,7 +23,7 @@ var top_slots = []
 var selecting_bottom := true
 var bottom_index := 0
 var top_index := 0
-var carrying_color : Variant = null       # dictionary from COLORS
+var carrying_color : Variant = null
 var solved := 0
 
 func _ready() -> void:
@@ -89,7 +89,7 @@ func _move_selection(dir: int) -> void:
 
 func _pick_wire() -> void:
 	carrying_color = bottom_colors[bottom_index]
-	carrying_bottom_index = bottom_index      # <– remember which bottom slot
+	carrying_bottom_index = bottom_index
 	selecting_bottom = false
 	top_index = 0
 	_update_highlight()
@@ -147,12 +147,11 @@ func _update_highlight() -> void:
 		slot = top_slots[top_index]
 
 	selection_rect.visible = true
-	# slightly bigger and offset so it looks like a border
+
 	selection_rect.global_position = slot.global_position - Vector2(4, 4)
 	selection_rect.size = slot.size + Vector2(8, 8)
 
 
 func _on_puzzle_complete() -> void:
-	# For now just print – later you’ll close this scene and go back to the car
-	print("Wire puzzle done!")
+	# TODO: replace with return to car scene
 	get_tree().quit() 
