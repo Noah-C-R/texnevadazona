@@ -173,5 +173,5 @@ func _update_highlight() -> void:
 	selection_rect.size = slot.size + Vector2(8, 8)
 
 func _on_puzzle_complete() -> void:
-	# TODO Connect to main game
-	get_tree().quit()  # replace with scene change later
+	# TODO: replace with return to car scene
+	get_tree().quit() 

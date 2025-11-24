@@ -205,19 +205,3 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 4
-
-[node name="Popup" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 383.0
-offset_right = 1314.0
-offset_bottom = 777.0
-
-[node name="Label" type="Label" parent="Popup"]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 49.0
-offset_right = 735.0
-offset_bottom = 351.0
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
