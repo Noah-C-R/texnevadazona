@@ -1,7 +1,7 @@
 # texnevadazona
 
 11/22/25: Added Wire Match minigame. 
-    Needs some texture and visual upgrades but basic game in there. minigame also exits game and needs to jump back to main game scene.  
+	Needs some texture and visual upgrades but basic game in there. minigame also exits game and needs to jump back to main game scene.  
 11/22/25: Added Wire Match minigame. (needs wire and port assets)   
 11/23/25: Added Fuse minigame. (needs mini-fuse asset)  
 11/24/25: Added Clamp minigame.  

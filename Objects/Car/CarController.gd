@@ -11,7 +11,8 @@ extends Node3D
 @export var break_force : float
 @export_range(0,90) var steering_angle : float
 @export_range(0,2) var steering_time_sec : float
-@export_range(1,5) var steering_speed_mod : float
+@export_range(1,10) var steering_angle_velocity_mod : float
+@export_range(1,10) var steering_speed_velocity_mod : float
 
 @export_group("VehicleBodies")
 @export var vehicle_body : VehicleBody3D
@@ -24,7 +25,8 @@ var engine_sm : StateMachine
 var steering_sm : StateMachine
 
 var forward_velocity_mag : float
-var steering_mag : float
+var steering_angle_mag : float
+var steering_speed_mag : float
 var steering_tween : Tween
 
 var last_active_engine_state : String
@@ -65,8 +67,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	forward_velocity_mag = abs((vehicle_body.linear_velocity * vehicle_body.transform.basis.z).length())
-	steering_mag = remap(forward_velocity_mag, 0, max_speed, 1, steering_speed_mod)
-	print(forward_velocity_mag)
+	steering_angle_mag = clamp(remap(forward_velocity_mag, 0, max_speed, 1, steering_angle_velocity_mod), 1, steering_angle_velocity_mod)
+	steering_speed_mag = clamp(remap(forward_velocity_mag, 0, max_speed, 1, steering_speed_velocity_mod), 1, steering_speed_velocity_mod)
+	printt(forward_velocity_mag, steering_angle_mag, steering_speed_mag, wheel_front_left.steer_val)
 
 func set_steer(val):
 	wheel_front_left.steer_val = val
@@ -178,8 +181,8 @@ func steering_left_enter():
 	if steering_tween:
 		steering_tween.kill()
 		steering_tween = create_tween()
-	steering_tween.tween_property(wheel_front_left, "steer_val", target_angle / steering_mag, steering_time_sec)
-	steering_tween.parallel().tween_property(wheel_front_right, "steer_val", target_angle / steering_mag, steering_time_sec)
+	steering_tween.tween_property(wheel_front_left, "steer_val", target_angle / steering_angle_mag, steering_time_sec * steering_speed_mag)
+	steering_tween.parallel().tween_property(wheel_front_right, "steer_val", target_angle / steering_angle_mag, steering_time_sec * steering_speed_mag)
 
 func steering_left_phys(delta : float):
 	var axis = Input.get_axis("Car_Turn_Left", "Car_Turn_Right")
@@ -194,8 +197,8 @@ func steering_right_enter():
 	if steering_tween:
 		steering_tween.kill()
 		steering_tween = create_tween()
-	steering_tween.tween_property(wheel_front_left, "steer_val", target_angle / steering_mag, steering_time_sec)
-	steering_tween.parallel().tween_property(wheel_front_right, "steer_val", target_angle / steering_mag, steering_time_sec)
+	steering_tween.tween_property(wheel_front_left, "steer_val", target_angle / steering_angle_mag, steering_time_sec * steering_speed_mag)
+	steering_tween.parallel().tween_property(wheel_front_right, "steer_val", target_angle / steering_angle_mag, steering_time_sec * steering_speed_mag)
 
 func steering_right_phys(delta : float):
 	var axis = Input.get_axis("Car_Turn_Left", "Car_Turn_Right")
