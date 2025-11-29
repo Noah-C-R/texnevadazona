@@ -57,7 +57,13 @@ func _input(event: InputEvent) -> void:
 		var look_axis = event.relative
 		c_body.rotate_y(-look_axis.x * mouse_sensitivity)
 		head.rotate_x(-look_axis.y * mouse_sensitivity)
-
+		
+# remove later and replace with a pause screen or something
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("Toggle_Mouse"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE; 
+		else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+		
 func walk_idle_phys(delta : float):
 	apply_idle()
 	apply_gravity()
