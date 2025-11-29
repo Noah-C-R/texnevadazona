@@ -66,7 +66,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	forward_velocity_mag = abs((vehicle_body.linear_velocity * vehicle_body.transform.basis.z).length())
 	steering_mag = remap(forward_velocity_mag, 0, max_speed, 1, steering_speed_mod)
-	print(forward_velocity_mag)
 
 func set_steer(val):
 	wheel_front_left.steer_val = val

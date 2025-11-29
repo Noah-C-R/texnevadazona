@@ -2,19 +2,19 @@ extends Control
 
 const MIN_HITS := 10
 const MAX_HITS := 20
-@onready var title_label    : Label      = $TitleLabel
+@onready var title_label    : Label = $TitleLabel
 
 const NOTE_TYPES := [
-	{ "action": "ui_left",  		"label": "←" },
-	{ "action": "ui_right", 		"label": "→" },
-	{ "action": "ui_up",    		"label": "↑" },
-	{ "action": "ui_down",  		"label": "↓" },
-	{ "action": "ui_cancel",		"label": "A" },
-	{ "action": "ui_b",     		"label": "B" },
-	{ "action": "ui_accept",		"label": "X" },
-	{ "action": "ui_select",		"label": "Y" },
-	{ "action": "Car_Break",	    "label": "LT" },
-	{ "action": "Car_Accelerate",   "label": "RT" },
+	{ "action": "MiniGame_Left",  		"label": "←" },
+	{ "action": "MiniGame_Right", 		"label": "→" },
+	{ "action": "MiniGame_Up",    		"label": "↑" },
+	{ "action": "MiniGame_Down",  		"label": "↓" },
+	#{ "action": "ui_cancel",		"label": "A" },
+	#{ "action": "ui_b",     		"label": "B" },
+	#{ "action": "ui_accept",		"label": "X" },
+	#{ "action": "ui_select",		"label": "Y" },
+	#{ "action": "Car_Break",	    "label": "LT" },
+	#{ "action": "Car_Accelerate",   "label": "RT" },
 ]
 
 @onready var lane : Control = $Lane
