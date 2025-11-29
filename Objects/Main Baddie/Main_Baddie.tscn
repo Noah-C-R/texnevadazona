@@ -8,9 +8,11 @@ size = Vector3(5.46, 13.74, 13.64)
 
 [node name="Main_Baddie" type="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+motion_mode = 1
 script = ExtResource("1_ofydo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mesh = ExtResource("1_shf17")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
