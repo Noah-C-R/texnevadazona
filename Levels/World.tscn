@@ -1,13 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=24 format=3 uid="uid://ba3h7jammnsf0"]
 
+[ext_resource type="Script" uid="uid://tox2dce165x0" path="res://Systems/Music/Synchronizer.gd" id="1_2uuim"]
+[ext_resource type="Script" uid="uid://cn5iuj31youu5" path="res://Systems/General/GameManager.gd" id="1_63vwh"]
 [ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
+[ext_resource type="AudioStream" uid="uid://fntoacc4uiuk" path="res://Assets/Music/Driving - Building - 104 bars.wav" id="2_3y1xx"]
 [ext_resource type="PackedScene" uid="uid://53sb1wey3138" path="res://Levels/L1.tscn" id="2_8ol0e"]
 [ext_resource type="Script" uid="uid://coeyimpnwiuvc" path="res://Systems/Levels/Loadstone.gd" id="3_iyc8y"]
+[ext_resource type="AudioStream" uid="uid://dcru82oi8f4ph" path="res://Assets/Music/Driving - Peak loop - 32 Bars.wav" id="3_oufd6"]
 [ext_resource type="Script" uid="uid://71gypy8ehcg8" path="res://Systems/Levels/Levels.gd" id="3_v72nc"]
+[ext_resource type="AudioStream" uid="uid://bjiuvjk8sghjq" path="res://Assets/Music/Monster - Bass only loop - 16 bars.wav" id="4_11qgy"]
 [ext_resource type="PackedScene" uid="uid://dntb2ay2toglk" path="res://Levels/L2.tscn" id="4_53g8k"]
 [ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
+[ext_resource type="AudioStream" uid="uid://deo3f2udun05c" path="res://Assets/Music/Monster - Building - 48 bars.wav" id="5_11qgy"]
 [ext_resource type="Shader" uid="uid://cxp0inxqlmxsr" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
+[ext_resource type="Shader" uid="uid://bqf3lb467d4bs" path="res://Shaders/Warp.gdshader" id="13_6r7q6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_53g8k"]
 render_priority = 1
@@ -61,7 +68,41 @@ shader = ExtResource("1_hmvop")
 shader_parameter/pixel_size = 4
 shader_parameter/screen_size = Vector2(1920, 1080)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_63vwh"]
+shader = ExtResource("13_6r7q6")
+shader_parameter/speed = 2.0
+shader_parameter/pixelation = 8.0
+shader_parameter/zoom = 1.0
+shader_parameter/gradient_pixelation = 0.185
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.0
+shader_parameter/color_mid_threshold = 0.063
+shader_parameter/color_low = Color(0.391307, 0.423529, 0.93901, 1)
+shader_parameter/color_mid = Color(0.160784, 0.141176, 0.152941, 0)
+shader_parameter/color_high = Color(0.498039, 0.0117647, 0.12549, 0)
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_63vwh")
+
+[node name="Synchronizer" type="Node" parent="." node_paths=PackedStringArray("players")]
+script = ExtResource("1_2uuim")
+driving_building = ExtResource("2_3y1xx")
+driving_peak = ExtResource("3_oufd6")
+monster_bass = ExtResource("4_11qgy")
+monster_build = ExtResource("5_11qgy")
+players = [NodePath("player_1"), NodePath("player_2"), NodePath("player_3"), NodePath("player_4"), NodePath("player_5")]
+metadata/_custom_type_script = "uid://tox2dce165x0"
+
+[node name="player_1" type="AudioStreamPlayer" parent="Synchronizer"]
+
+[node name="player_2" type="AudioStreamPlayer" parent="Synchronizer"]
+
+[node name="player_3" type="AudioStreamPlayer" parent="Synchronizer"]
+
+[node name="player_4" type="AudioStreamPlayer" parent="Synchronizer"]
+stream = ExtResource("2_3y1xx")
+
+[node name="player_5" type="AudioStreamPlayer" parent="Synchronizer"]
 
 [node name="Clouds" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
@@ -108,6 +149,14 @@ camera_attributes = SubResource("CameraAttributesPractical_j5go0")
 
 [node name="Pixelate" type="ColorRect" parent="PostProcessing"]
 material = SubResource("ShaderMaterial_j5go0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Warp" type="ColorRect" parent="PostProcessing"]
+material = SubResource("ShaderMaterial_63vwh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
