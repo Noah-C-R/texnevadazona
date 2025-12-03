@@ -127,7 +127,6 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 
 [node name="WireLayer" type="Control" parent="Harness"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,3 +165,19 @@ texture = ExtResource("4_ekeui")
 position = Vector2(185, 275)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("5_ow31p")
+
+[node name="Popup" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 567.0
+offset_top = 389.0
+offset_right = 1424.0
+offset_bottom = 770.0
+
+[node name="Label" type="Label" parent="Popup"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 54.0
+offset_right = 785.0
+offset_bottom = 355.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
