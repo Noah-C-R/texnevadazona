@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dcru82oi8f4ph"
+path="res://.godot/imported/Driving - Peak loop - 32 Bars.wav-79eec857d214ba7c1bce84d282953c18.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Driving - Peak loop - 32 Bars.wav"
+dest_files=["res://.godot/imported/Driving - Peak loop - 32 Bars.wav-79eec857d214ba7c1bce84d282953c18.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
