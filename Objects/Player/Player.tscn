@@ -53,6 +53,7 @@ player_controller = NodePath("PlayerController")
 collision_shape = NodePath("CollisionShape3D")
 hand_raycast = NodePath("Head/HandRaycast")
 pointer = NodePath("CanvasLayer/CenterContainer/TextureRect")
+default_active_state = null
 tightener_game = ExtResource("2_b0me6")
 
 [node name="PlayerController" type="Node3D" parent="." node_paths=PackedStringArray("c_body", "head")]

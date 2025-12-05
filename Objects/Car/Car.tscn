@@ -410,7 +410,7 @@ mesh = SubResource("PlaneMesh_38cnr")
 surface_material_override/0 = SubResource("StandardMaterial3D_g8ihv")
 
 [node name="HeadlightL" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, -0.493694, 0.792213, -1.02224)
+transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, -0.493694, 0.792213, -1.25735)
 light_color = Color(0.807053, 0.769744, 0.65091, 1)
 light_energy = 40.0
 light_volumetric_fog_energy = 3.423
@@ -419,7 +419,7 @@ spot_range = 700.0
 spot_angle = 23.74
 
 [node name="HeadlightR" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, 0.494, 0.792012, -1.02199)
+transform = Transform3D(1, 0, 0, 0, 0.994829, 0.10156, 0, -0.10156, 0.994829, 0.494, 0.792012, -1.2571)
 light_color = Color(0.807053, 0.769744, 0.65091, 1)
 light_energy = 40.0
 light_volumetric_fog_energy = 3.423
