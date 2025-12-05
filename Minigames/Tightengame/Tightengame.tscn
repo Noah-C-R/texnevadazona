@@ -41,7 +41,7 @@ layout_mode = 0
 offset_left = 1340.0
 offset_top = 76.0
 offset_right = 1512.0
-offset_bottom = 1040.0
+offset_bottom = 1119.0
 color = Color(0, 0, 0, 0.501961)
 
 [node name="Lane" type="Control" parent="."]
@@ -96,3 +96,5 @@ offset_left = 802.0
 offset_top = 739.0
 offset_right = 961.0
 offset_bottom = 879.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]

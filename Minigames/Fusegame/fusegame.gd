@@ -18,6 +18,7 @@ enum GameState { INTRO, PLAYING }
 @onready var good_fuse      : Texture2D   = load("res://Minigames/Fusegame/goodfuse.png")
 
 @onready var popup          : Control     = $Popup
+@onready var directions     : Control     = $Directions
 @onready var popup_label    : Label       = $Popup/Label
 
 var fuse_slots = []
@@ -26,6 +27,9 @@ var selected_index : int = 0
 var broken_remaining : int = 0
 var in_window : bool = false
 var state : GameState = GameState.INTRO
+var GoodSound := load("res://Assets/Minigame sounds/fuse good.wav")
+var BadSound := load("res://Assets/Minigame sounds/fuse broke.wav")
+var FixSound := load("res://Assets/Minigame sounds/fuse fixed.wav")
 
 func _ready() -> void:
 	randomize()
@@ -56,11 +60,11 @@ func _ready() -> void:
 
 	# intro popup
 	popup.visible = true
-	popup_label.text = "Use the D-Pad to search the Fuses,\n" \
+	popup_label.text = "Use the D-Pad / Arrow keys to search the Fuses,\n" \
 		+ "and then replace the broken ones.\n\n" \
-		+ "Use the X Button to select/check a Fuse.\n" \
-		+ "Use the X Button to replace the Fuse.\n" \
-		+ "Use the A Button to exit."
+		+ "Use the Xbox X / G Button to select/check a Fuse.\n" \
+		+ "Use the Xbox X / G Button to replace the Fuse.\n" \
+		+ "Use the Xbox A / B Button to exit."
 	state = GameState.INTRO
 
 func _process(_delta: float) -> void:
@@ -78,6 +82,7 @@ func _process_intro() -> void:
 	if _any_start_button_pressed():
 		popup.visible = false
 		state = GameState.PLAYING
+		directions.visible = true
 
 func _any_start_button_pressed() -> bool:
 	return (
@@ -86,6 +91,8 @@ func _any_start_button_pressed() -> bool:
 		Input.is_action_just_pressed("ui_left") or
 		Input.is_action_just_pressed("ui_right") or
 		Input.is_action_just_pressed("ui_up") or
+		Input.is_action_just_pressed("ui_b") or
+		Input.is_action_just_pressed("ui_select") or
 		Input.is_action_just_pressed("ui_down")
 	)
 
@@ -130,8 +137,10 @@ func _open_fuse_window() -> void:
 	var state_local := fuse_states[selected_index]
 	if state_local == FuseState.BROKEN:
 		fuse_sprite.texture = broken_fuse
+		play_fuse_sound(BadSound)
 	else:
 		fuse_sprite.texture = good_fuse
+		play_fuse_sound(GoodSound)
 
 func _close_fuse_window() -> void:
 	in_window = false
@@ -144,9 +153,20 @@ func _try_replace_fuse() -> void:
 		fuse_sprite.texture = good_fuse
 		broken_remaining -= 1
 		_update_title()
+		play_fuse_sound(FixSound)
 
 		if broken_remaining <= 0:
 			_on_puzzle_complete()
+
+func play_fuse_sound(stream: AudioStream):
+	$AudioStreamPlayer.stream = stream
+
+	if stream == GoodSound:
+		$AudioStreamPlayer.volume_db = 16.0  # make it louder
+	else:
+		$AudioStreamPlayer.volume_db = 0.0  # default level
+
+	$AudioStreamPlayer.play(0.0)
 
 func _update_title() -> void:
 	title_label.text = "Find the dead fuses! (%d)" % broken_remaining

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cecmf2v4we0rm"
+path="res://.godot/imported/wire connect.wav-73cd7aa12801ab6252172902568f7c01.sample"
+
+[deps]
+
+source_file="res://Assets/Minigame sounds/wire connect.wav"
+dest_files=["res://.godot/imported/wire connect.wav-73cd7aa12801ab6252172902568f7c01.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

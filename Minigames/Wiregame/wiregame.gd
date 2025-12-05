@@ -4,6 +4,10 @@ extends Control
 @onready var wire_layer     : Control   = $Harness/WireLayer
 @onready var popup          : Control   = $Popup
 @onready var popup_label    : Label     = $Popup/Label
+@onready var directions     : Control     = $Directions
+
+var GoodSound := load("res://Assets/Minigame sounds/wire connect.wav")
+var BadSound := load("res://Assets/Minigame sounds/wire fail.wav")
 
 var carrying_bottom_index : int = -1
 
@@ -39,11 +43,11 @@ func _ready() -> void:
 
 	# intro popup text (from your screenshot)
 	popup.visible = true
-	popup_label.text = "Use the D-Pad to select the wire,\n" \
+	popup_label.text = "Use the D-Pad / Arrow keys to select the wire,\n" \
 		+ "and then replace the wire in the\n" \
 		+ "corresponding wire harness hole.\n\n" \
-		+ "Use the X Button to select the wire,\n" \
-		+ "and the A Button to cancel."
+		+ "Use the xbox X / G Button to select the wire,\n" \
+		+ "and the Xbox A / B Button to cancel."
 	state = GameState.INTRO
 
 func _start_puzzle() -> void:
@@ -83,6 +87,7 @@ func _process_intro() -> void:
 	if _any_start_button_pressed():
 		popup.visible = false
 		state = GameState.PLAYING
+		directions.visible = true
 
 func _any_start_button_pressed() -> bool:
 	return (
@@ -93,6 +98,14 @@ func _any_start_button_pressed() -> bool:
 		Input.is_action_just_pressed("ui_up")     or
 		Input.is_action_just_pressed("ui_down")
 	)
+
+func play_sound(is_good: bool) -> void:
+	if is_good:
+		$AudioStreamPlayer.stream = GoodSound
+	else:
+		$AudioStreamPlayer.stream = BadSound
+		
+	$AudioStreamPlayer.play(0.0)
 
 func _process_playing() -> void:
 	if Input.is_action_just_pressed("ui_left"):
@@ -136,6 +149,7 @@ func _place_wire() -> void:
 		slot.set_meta("filled", true)
 		_draw_wire(carrying_bottom_index, top_index, carrying_color.col)
 		solved += 1
+		play_sound(true)
 		if solved == num_wires:
 			_on_puzzle_complete()
 	else:
@@ -143,7 +157,8 @@ func _place_wire() -> void:
 		slot.color = Color.WHITE
 		await get_tree().create_timer(0.1).timeout
 		slot.color = original_color
-
+		play_sound(false)
+		
 	selecting_bottom = true
 	carrying_color = null
 	_update_highlight()

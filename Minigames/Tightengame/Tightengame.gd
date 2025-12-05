@@ -25,8 +25,12 @@ var hits : int = 0
 var active_notes : Array = []
 var spawn_timer : float = 0.0
 var spawned_count : int = 0
-
+var GoodSound := load("res://Assets/Minigame sounds/tighten.wav")
+var BadSound := load("res://Assets/Minigame sounds/tighten_fail.wav")
 var screen_height : float = 0.0
+var sound_cooldown := 0.1
+var last_sound_time := -999.0
+
 
 func _ready() -> void:
 	randomize()
@@ -100,7 +104,7 @@ func _process_playing(delta: float) -> void:
 func _spawn_dot() -> void:
 	var lbl := Label.new()
 	lbl.text = "•"
-	lbl.add_theme_font_size_override("font_size", 32)
+	lbl.add_theme_font_size_override("font_size", 42)
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 	var start_pos = Vector2()
@@ -119,6 +123,7 @@ func _move_notes(delta: float) -> void:
 
 		if lbl.global_position.y > screen_height:
 			active_notes.erase(lbl)
+			play_sound(false)
 			lbl.queue_free()
 
 func _check_input_for_hit() -> void:
@@ -135,9 +140,11 @@ func _check_input_for_hit() -> void:
 
 	if dot_y >= zone_top and dot_y <= zone_bottom:
 		_on_correct_hit(lbl)
-	# ignored failed buttons
+	else:
+		play_sound(false)
 
 func _on_correct_hit(lbl: Label) -> void:
+	play_sound(true)
 	hits += 1
 	active_notes.erase(lbl)
 	lbl.queue_free()
@@ -147,9 +154,24 @@ func _on_correct_hit(lbl: Label) -> void:
 	var target_rotation = bolt_indicator.rotation + deg_to_rad(spin_degrees_per_hit)
 	var tween = create_tween()
 	tween.tween_property(bolt_indicator, "rotation", target_rotation, 0.1)
-
+	
 	if hits >= required_hits:
 		_on_success()
+
+func play_sound(is_good: bool) -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+
+	if now - last_sound_time < sound_cooldown:
+		return
+
+	last_sound_time = now
+
+	if is_good:
+		$AudioStreamPlayer.stream = GoodSound
+		$AudioStreamPlayer.play(0.0)
+	else:
+		$AudioStreamPlayer.stream = BadSound
+		$AudioStreamPlayer.play(0.0)
 
 func _update_title() -> void:
 	var remaining = required_hits - hits

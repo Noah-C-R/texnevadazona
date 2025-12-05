@@ -142,7 +142,7 @@ offset_right = -23.0
 offset_bottom = 44.0
 color = Color(0.258824, 0.964706, 0.054902, 1)
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Directions" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 45.0
@@ -153,16 +153,16 @@ text = "Use the D-Pad to select the wire,
 and then replace the wire in the 
 corresponding wire harness hole.
 
-Use the      Button to select the wire, 
-and the      Button to cancel."
+Use the      / G  Button to select the wire, 
+and the      / B Button to cancel."
 
-[node name="XboxButtonA_svg" type="Sprite2D" parent="TextEdit"]
-position = Vector2(185, 329)
+[node name="XboxButtonA_svg" type="Sprite2D" parent="Directions"]
+position = Vector2(168, 246)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("4_ekeui")
 
-[node name="XboxButtonX_svg" type="Sprite2D" parent="TextEdit"]
-position = Vector2(185, 275)
+[node name="XboxButtonX_svg" type="Sprite2D" parent="Directions"]
+position = Vector2(168, 198)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("5_ow31p")
 
@@ -181,3 +181,5 @@ offset_right = 785.0
 offset_bottom = 355.0
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://kp2ykcam8s3o"
+path="res://.godot/imported/fuse broke.wav-a6f44f06fbf4fee4c6c26e508e962094.sample"
+
+[deps]
+
+source_file="res://Assets/Minigame sounds/fuse broke.wav"
+dest_files=["res://.godot/imported/fuse broke.wav-a6f44f06fbf4fee4c6c26e508e962094.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -144,7 +144,7 @@ z_index = 1
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Directions" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 40.0
@@ -154,23 +154,23 @@ theme_override_font_sizes/font_size = 40
 text = "Use the D-Pad to search the Fuses, 
 and then replace the broken ones.
 
-Use the      Button to select the Fuse,
+Use the      / G Button to select the Fuse,
 and check it. 
-Use the      Button to replace the Fuse,
-Use the      Button to exit."
+Use the      / G Button to replace the Fuse,
+Use the      / B Button to exit."
 
-[node name="XboxButtonA_svg" type="Sprite2D" parent="TextEdit"]
-position = Vector2(185, 390)
+[node name="XboxButtonA_svg" type="Sprite2D" parent="Directions"]
+position = Vector2(165, 290)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("4_5pehu")
 
-[node name="XboxButtonX_svg" type="Sprite2D" parent="TextEdit"]
-position = Vector2(185, 214)
+[node name="XboxButtonX_svg" type="Sprite2D" parent="Directions"]
+position = Vector2(165, 155)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("5_ho0yq")
 
-[node name="XboxButtonX_svg2" type="Sprite2D" parent="TextEdit"]
-position = Vector2(185, 330)
+[node name="XboxButtonX_svg2" type="Sprite2D" parent="Directions"]
+position = Vector2(165, 241)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("5_ho0yq")
 
@@ -221,3 +221,6 @@ offset_right = 735.0
 offset_bottom = 351.0
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(38, 40)
