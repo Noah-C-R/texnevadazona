@@ -8,7 +8,7 @@ extends Marker3D
 @export var level_parent : Node
 
 var level : Node
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !level && global_position.distance_to(Car.I.global_position) < trigger_range:
 		level = level_scn.instantiate()
 		level_parent.add_child(level)

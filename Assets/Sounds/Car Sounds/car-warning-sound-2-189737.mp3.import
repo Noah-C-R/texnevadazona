@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cx1uuslrl86hb"
+path="res://.godot/imported/car-warning-sound-2-189737.mp3-73d8bc704297751ce861cc717fa8f432.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/car-warning-sound-2-189737.mp3"
+dest_files=["res://.godot/imported/car-warning-sound-2-189737.mp3-73d8bc704297751ce861cc717fa8f432.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

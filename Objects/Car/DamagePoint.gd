@@ -52,7 +52,7 @@ func damage_healthy_enter():
 	healthy.emit()
 	_healthy()
 
-func damage_healthy_phys(delta : float):
+func damage_healthy_phys(_delta : float):
 	if health < damaged_level:
 		damage_sm.transfer("Damaged")
 
@@ -61,7 +61,7 @@ func damage_damaged_enter():
 	damaged.emit()
 	_damaged()
 	
-func damage_damaged_phys(delta : float):
+func damage_damaged_phys(_delta : float):
 	if health >= damaged_level:
 		damage_sm.transfer("Healthy")
 	if health < broken_level:
@@ -72,6 +72,6 @@ func damage_broken_enter():
 	broken.emit()
 	_broken()
 	
-func damage_broken_phys(delta : float):
+func damage_broken_phys(_delta : float):
 	if health > broken_level:
-		damage_sm.transfer("Broken")
+		damage_sm.transfer("Damaged")
