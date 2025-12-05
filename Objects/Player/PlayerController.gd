@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	walk_sm.transfer("Idle")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	move_axis = Vector3(Input.get_axis("Player_Walk_Left", "Player_Walk_Right"), 0, Input.get_axis("Player_Walk_Backward", "Player_Walk_Forward")).normalized()
 	
 	c_body.move_and_slide()
@@ -59,18 +59,18 @@ func _input(event: InputEvent) -> void:
 		head.rotate_x(-look_axis.y * mouse_sensitivity)
 		
 # remove later and replace with a pause screen or something
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("Toggle_Mouse"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE; 
 		else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 		
-func walk_idle_phys(delta : float):
+func walk_idle_phys(_delta : float):
 	apply_idle()
 	apply_gravity()
 	if !move_axis.is_zero_approx():
 		walk_sm.transfer("Walk")
 
-func walk_walk_phys(delta : float):
+func walk_walk_phys(_delta : float):
 	apply_walk()
 	apply_gravity()
 	

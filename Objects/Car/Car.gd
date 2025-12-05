@@ -8,6 +8,7 @@ static var I : Car
 @export var interact_manager : InteractManager
 @export var car_controller : CarController
 @export var camera : Camera3D
+@export var vibes : Node3D
 @export var car_exit : Marker3D
 @export var default_active_state := "Active"
 
@@ -22,7 +23,7 @@ func _ready() -> void:
 	car_sm.add_state("Inactive", car_inactive_enter)
 	car_sm.transfer(default_active_state)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Car_Exit"):
 		car_sm.transfer("Inactive")
 
@@ -32,10 +33,13 @@ func enter_car():
 func car_active_enter():
 	car_controller.set_active()
 	camera.make_current()
+	vibes.visible = true
 
 func car_inactive_enter():
 	car_controller.set_inactive()
+	vibes.visible = false
 	Player.I.enter_player()
+	
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	damage_manager.process_physics(state)
