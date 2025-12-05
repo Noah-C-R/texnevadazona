@@ -9,7 +9,7 @@ signal minigame_finished(success: bool)
 @export var success_ratio : float = 0.9  		# 90% of dots must be hit
 @export var spin_degrees_per_hit : float = 20.0
 
-@onready var bolt_indicator : Control = $RotatingIndicator
+@onready var bolt_indicator : Sprite2D = $PivotNode/RotatingIndicator
 @onready var title_label : Label    = $TitleLabel
 @onready var lane        : Control  = $Lane
 @onready var hit_zone    : ColorRect = $HitZone
@@ -34,7 +34,7 @@ var last_sound_time := -999.0
 
 func _ready() -> void:
 	randomize()
-	bolt_indicator.pivot_offset = bolt_indicator.size * 0.5
+	#bolt_indicator.pivot_offset = bolt_indicator.size * 0.5
 	screen_height = get_viewport_rect().size.y
 	hits = 0
 	required_hits = int(ceil(num_dots * success_ratio))

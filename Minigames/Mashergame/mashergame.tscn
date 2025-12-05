@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbhk8ps2vwupb"]
+[gd_scene load_steps=6 format=3 uid="uid://cbhk8ps2vwupb"]
 
 [ext_resource type="Script" uid="uid://dp3lyh46ifmvs" path="res://Minigames/Mashergame/mashergame.gd" id="1_mxpge"]
-[ext_resource type="Texture2D" uid="uid://ts7u02fgl6xh" path="res://Minigames/Wiregame/Background.png" id="2_1rkrd"]
-[ext_resource type="Texture2D" uid="uid://c2o1xcj7nrnlf" path="res://Minigames/Tightengame/clamps.png" id="3_7gr2f"]
+[ext_resource type="Texture2D" uid="uid://duvk3x37gsign" path="res://Assets/Minigame assets/OpenHood.png" id="2_mxpge"]
 [ext_resource type="FontFile" uid="uid://1n7n2x40unr" path="res://Assets/Typefaces/Sans-Serif/League_Gothic/LeagueGothic-Regular-VariableFont_wdth.ttf" id="4_1rkrd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxpge"]
@@ -37,6 +36,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mxpge")
 
+[node name="Ambiance" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -2.0
+offset_right = 1718.0
+offset_bottom = 987.0
+scale = Vector2(1.125, 1.125)
+color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -44,23 +52,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_1rkrd")
-
-[node name="Background2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 878.0
-offset_top = 31.0
-offset_right = -18.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_7gr2f")
-stretch_mode = 4
+texture = ExtResource("2_mxpge")
 
 [node name="RoundIndicator" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 794.0
 offset_top = 328.0
@@ -69,11 +64,12 @@ offset_bottom = 478.82
 scale = Vector2(1.125, 1.125)
 
 [node name="Progress" type="ProgressBar" parent="."]
+modulate = Color(0.982312, 0.36123, 0.671194, 1)
 layout_mode = 0
-offset_left = 680.0
-offset_top = 625.0
-offset_right = 1174.0
-offset_bottom = 652.0
+offset_left = 446.0
+offset_top = 623.0
+offset_right = 940.0
+offset_bottom = 650.0
 theme_override_styles/background = SubResource("StyleBoxFlat_mxpge")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1rkrd")
 value = 15.0
@@ -88,13 +84,24 @@ offset_bottom = 501.0
 scale = Vector2(1.0581, 1.11055)
 
 [node name="Label" type="Label" parent="Popup"]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 63.0
-offset_right = 505.0
-offset_bottom = 190.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -116.5
+offset_right = 267.0
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_1rkrd")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 95
+text = "mash any button to recharge the coolant!"
 horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -2.441

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dknmf7igncxk1"]
+[gd_scene load_steps=6 format=3 uid="uid://dknmf7igncxk1"]
 
 [ext_resource type="Script" uid="uid://10ufj8bgdk4s" path="res://Minigames/Fusegame/fusegame.gd" id="1_l01gi"]
-[ext_resource type="Texture2D" uid="uid://ts7u02fgl6xh" path="res://Minigames/Wiregame/Background.png" id="2_stjoh"]
-[ext_resource type="Texture2D" uid="uid://cekmcvaq7vv44" path="res://Minigames/Fusegame/backgroud2.png" id="3_l01gi"]
+[ext_resource type="Texture2D" uid="uid://bfgg1unr58doi" path="res://Assets/Minigame assets/FuseMinigame2.png" id="2_l01gi"]
 [ext_resource type="FontFile" uid="uid://1n7n2x40unr" path="res://Assets/Typefaces/Sans-Serif/League_Gothic/LeagueGothic-Regular-VariableFont_wdth.ttf" id="4_4kghw"]
 [ext_resource type="Texture2D" uid="uid://bclal8im368p7" path="res://Minigames/Wiregame/Xbox_button_A.svg.png" id="4_5pehu"]
 [ext_resource type="Texture2D" uid="uid://cl3pd3eqby8y8" path="res://Minigames/Wiregame/Xbox_button_X.svg.png" id="5_ho0yq"]
@@ -16,29 +15,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l01gi")
 
+[node name="Ambiance" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -2.0
+offset_right = 1718.0
+offset_bottom = 987.0
+scale = Vector2(1.125, 1.125)
+color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_stjoh")
-
-[node name="Background2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1894.0
-offset_top = 30.0
-offset_right = 994.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-texture = ExtResource("3_l01gi")
-expand_mode = 3
+texture = ExtResource("2_l01gi")
 
 [node name="Selection" type="ColorRect" parent="."]
 layout_mode = 0
@@ -49,112 +45,137 @@ color = Color(0.258824, 0.964706, 0.054902, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 870.0
-offset_top = 324.0
-offset_right = 1759.0
-offset_bottom = 438.0
+offset_left = 1444.0
+offset_top = 8.0
+offset_right = 1919.0
+offset_bottom = 122.0
 theme_override_font_sizes/font_size = 50
+text = "find the dead fuses! 
+0/10 remaining"
+autowrap_mode = 3
 
 [node name="Grid" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 1261.0
-offset_top = 629.0
-offset_right = 1531.0
-offset_bottom = 819.0
+offset_left = 1009.92
+offset_top = 417.81
+offset_right = 1832.93
+offset_bottom = 1002.81
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
 
 [node name="Fuse0" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse1" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse2" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse3" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse4" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse5" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse6" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse7" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse8" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse9" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse10" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse11" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse12" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse13" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse14" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Fuse15" type="ColorRect" parent="Grid"]
 z_index = 1
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(159.1, 140.76)
 layout_mode = 2
+color = Color(1, 1, 1, 0.0862745)
 
 [node name="Directions" type="TextEdit" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 38.0
 offset_top = 40.0
-offset_right = 789.0
+offset_right = 646.0
 offset_bottom = 530.0
 theme_override_fonts/font = ExtResource("4_4kghw")
 theme_override_font_sizes/font_size = 50
 text = "Use the D-Pad to search the Fuses, 
+and then replace the broken ones.
+
+Use the      / G Button to select the Fuse,
+and check it. 
+Use the      / G Button to replace the Fuse,
+Use the      / B Button to exit."
+placeholder_text = "Use the D-Pad to search the Fuses, 
 and then replace the broken ones.
 
 Use the      / G Button to select the Fuse,
@@ -200,31 +221,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -177.5
+offset_left = -277.0
 offset_top = -181.5
-offset_right = 376.5
+offset_right = 277.0
 offset_bottom = 181.5
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 4
-
-[node name="Popup" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 383.0
-offset_right = 1314.0
-offset_bottom = 777.0
-
-[node name="Label" type="Label" parent="Popup"]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 49.0
-offset_right = 735.0
-offset_bottom = 351.0
-theme_override_fonts/font = ExtResource("4_4kghw")
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(38, 40)

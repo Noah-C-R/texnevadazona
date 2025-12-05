@@ -59,12 +59,12 @@ func _ready() -> void:
 	fuse_sprite.visible = false
 
 	# intro popup
-	popup.visible = true
-	popup_label.text = "Use the D-Pad / Arrow keys to search the Fuses,\n" \
-		+ "and then replace the broken ones.\n\n" \
-		+ "Use the Xbox X / G Button to select/check a Fuse.\n" \
-		+ "Use the Xbox X / G Button to replace the Fuse.\n" \
-		+ "Use the Xbox A / B Button to exit."
+	#popup.visible = true
+	#popup_label.text = "Use the D-Pad / Arrow keys to search the Fuses,\n" \
+		#+ "and then replace the broken ones.\n\n" \
+		#+ "Use the Xbox X / G Button to select/check a Fuse.\n" \
+		#+ "Use the Xbox X / G Button to replace the Fuse.\n" \
+		#+ "Use the Xbox A / B Button to exit."
 	state = GameState.INTRO
 
 func _process(_delta: float) -> void:
@@ -80,7 +80,7 @@ func _process(_delta: float) -> void:
 func _process_intro() -> void:
 	# any face button or D-pad to continue
 	if _any_start_button_pressed():
-		popup.visible = false
+		#popup.visible = false
 		state = GameState.PLAYING
 		directions.visible = true
 
