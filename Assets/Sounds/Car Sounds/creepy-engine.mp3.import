@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://v73aebcuusat"
+path="res://.godot/imported/creepy-engine.mp3-7c821d8030cfca22b3d8ecc913e091fa.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/creepy-engine.mp3"
+dest_files=["res://.godot/imported/creepy-engine.mp3-7c821d8030cfca22b3d8ecc913e091fa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
