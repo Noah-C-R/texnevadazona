@@ -12,6 +12,10 @@ static var I : Player
 @export var pointer : TextureRect
 @export var default_active_state := "Inactive"
 
+@export_group("Minigames")
+@export var tightener_game : PackedScene
+
+
 var player_sm : StateMachine
 
 var current_carpart_hover : String
@@ -40,21 +44,31 @@ func interact():
 			player_sm.transfer("Inactive")
 			Car.I.enter_car()
 		"WheelFrontLeft":
-			if start_mash_minigame():
+			if await start_crank_minigame():
 				interact_point.fix()
 		"WheelFrontRight":
-			if start_mash_minigame():
+			if await start_crank_minigame():
 				interact_point.fix()
 		"WheelBackLeft":
-			if start_mash_minigame():
+			if await start_crank_minigame():
 				interact_point.fix()
 		"WheelBackRight":
-			if start_mash_minigame():
+			if await start_crank_minigame():
 				interact_point.fix()
 
-func start_mash_minigame():
+func start_crank_minigame():
 		print("you fixed it!")
-		return true
+		var mg = tightener_game.instantiate() as TightenerGame
+		add_child(mg)
+		
+		mg.minigame_finished.connect(func(success : bool): 
+			mg.queue_free()
+			return true
+			)
+		await mg.minigame_finished
+		mg.queue_free()
+		
+		return false
 		
 		
 func _physics_process(_delta: float) -> void:

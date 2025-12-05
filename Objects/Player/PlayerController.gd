@@ -59,10 +59,10 @@ func _input(event: InputEvent) -> void:
 		head.rotate_x(-look_axis.y * mouse_sensitivity)
 		
 # remove later and replace with a pause screen or something
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("Toggle_Mouse"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE; 
-		else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+#func _unhandled_input(_event):
+	#if Input.is_action_just_pressed("Toggle_Mouse"):
+		#if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE; 
+		#else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 		
 func walk_idle_phys(_delta : float):
 	apply_idle()

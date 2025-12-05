@@ -1,11 +1,13 @@
+class_name TightenerGame
+
 extends Control
 
 signal minigame_finished(success: bool)
 
 @export var num_dots : int = 12       			# how many dots total for this level
-@export var dot_speed : float = 150.0			# Speed of the dots 
-@export var spawn_interval_min : float = 0.5	# Min time to spawn
-@export var spawn_interval_max : float = 2.0	# Max time to spawn
+@export var dot_speed : float = 450.0			# Speed of the dots 
+@export var spawn_interval_min : float = 0.25	# Min time to spawn
+@export var spawn_interval_max : float = 1.0	# Max time to spawn
 @export var success_ratio : float = 0.9  		# 90% of dots must be hit
 @export var spin_degrees_per_hit : float = 20.0
 
@@ -67,7 +69,6 @@ func _wait_for_any_button_to_finish() -> void:
 	# TODO Connect with main game
 	if _any_button_pressed():
 		minigame_finished.emit(result_success)
-		get_tree().quit()  # replace with scene change later
 
 func _any_button_pressed() -> bool:
 	return Input.is_action_just_pressed("ui_left") \
@@ -142,6 +143,8 @@ func _check_input_for_hit() -> void:
 		_on_correct_hit(lbl)
 	else:
 		play_sound(false)
+		active_notes.erase(lbl)
+		lbl.queue_free()
 
 func _on_correct_hit(lbl: Label) -> void:
 	play_sound(true)
