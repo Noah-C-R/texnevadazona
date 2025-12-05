@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bima2pk75tyt1"]
+
+[ext_resource type="Script" uid="uid://dwo8i16qh15oe" path="res://Objects/Main Baddie/Stalker.gd" id="1_ofydo"]
+[ext_resource type="ArrayMesh" uid="uid://c60m148ay3ikv" path="res://Assets/Creatures/chupascorpion.obj" id="1_shf17"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ofydo"]
+size = Vector3(5.46, 13.74, 13.64)
+
+[node name="Main_Baddie" type="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+motion_mode = 1
+script = ExtResource("1_ofydo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("1_shf17")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0872426, -0.996187, 0, 0.996187, 0.0872426, 0, 0, 0, 1, -1.61642, 1.79177, 0.234887)
+shape = SubResource("BoxShape3D_ofydo")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

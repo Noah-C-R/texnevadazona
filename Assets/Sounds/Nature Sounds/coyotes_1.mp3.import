@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crxosyjbcd258"
+path="res://.godot/imported/coyotes_1.mp3-c8599b5b87ce711b632c61d5cd29ee0c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Nature Sounds/coyotes_1.mp3"
+dest_files=["res://.godot/imported/coyotes_1.mp3-c8599b5b87ce711b632c61d5cd29ee0c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
