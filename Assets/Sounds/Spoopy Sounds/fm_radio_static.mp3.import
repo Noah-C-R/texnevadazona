@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmqk2tt5t64ai"
+path="res://.godot/imported/fm_radio_static.mp3-24448912e50534379b593dca8485dbd6.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/fm_radio_static.mp3"
+dest_files=["res://.godot/imported/fm_radio_static.mp3-24448912e50534379b593dca8485dbd6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

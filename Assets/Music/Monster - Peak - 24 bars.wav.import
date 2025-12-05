@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d4k63mx55aro0"
+path="res://.godot/imported/Monster - Peak - 24 bars.wav-eaf261a0818d3f9b3d54f6081703832f.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Monster - Peak - 24 bars.wav"
+dest_files=["res://.godot/imported/Monster - Peak - 24 bars.wav-eaf261a0818d3f9b3d54f6081703832f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
