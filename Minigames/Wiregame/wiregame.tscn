@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmujwtd6pkswv"]
+[gd_scene load_steps=7 format=3 uid="uid://bmujwtd6pkswv"]
 
 [ext_resource type="Script" uid="uid://b8wltu5e5vl7w" path="res://Minigames/Wiregame/wiregame.gd" id="1_0d1tl"]
 [ext_resource type="Texture2D" uid="uid://ts7u02fgl6xh" path="res://Minigames/Wiregame/Background.png" id="2_0ky6e"]
 [ext_resource type="Texture2D" uid="uid://crli8uulomivx" path="res://Minigames/Wiregame/Wireharness.png" id="3_k4vvm"]
 [ext_resource type="Texture2D" uid="uid://bclal8im368p7" path="res://Minigames/Wiregame/Xbox_button_A.svg.png" id="4_ekeui"]
+[ext_resource type="FontFile" uid="uid://1n7n2x40unr" path="res://Assets/Typefaces/Sans-Serif/League_Gothic/LeagueGothic-Regular-VariableFont_wdth.ttf" id="4_ow31p"]
 [ext_resource type="Texture2D" uid="uid://cl3pd3eqby8y8" path="res://Minigames/Wiregame/Xbox_button_X.svg.png" id="5_ow31p"]
 
 [node name="Wiregame" type="Control"]
@@ -148,7 +149,8 @@ offset_left = 52.0
 offset_top = 45.0
 offset_right = 803.0
 offset_bottom = 535.0
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("4_ow31p")
+theme_override_font_sizes/font_size = 50
 text = "Use the D-Pad to select the wire, 
 and then replace the wire in the 
 corresponding wire harness hole.
@@ -157,12 +159,12 @@ Use the      / G  Button to select the wire,
 and the      / B Button to cancel."
 
 [node name="XboxButtonA_svg" type="Sprite2D" parent="Directions"]
-position = Vector2(168, 246)
+position = Vector2(128.528, 366)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("4_ekeui")
 
 [node name="XboxButtonX_svg" type="Sprite2D" parent="Directions"]
-position = Vector2(168, 198)
+position = Vector2(128.528, 299.528)
 scale = Vector2(0.022, 0.022)
 texture = ExtResource("5_ow31p")
 
@@ -179,6 +181,7 @@ offset_left = 111.0
 offset_top = 54.0
 offset_right = 785.0
 offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("4_ow31p")
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 
