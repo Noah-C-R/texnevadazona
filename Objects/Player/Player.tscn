@@ -47,14 +47,14 @@ fill_to = Vector2(0, 0)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "vibes", "player_controller", "collision_shape", "hand_raycast", "pointer")]
 script = ExtResource("1_cac6a")
+default_active_state = null
+tightener_game = ExtResource("2_b0me6")
 camera = NodePath("Head/Camera3D")
 vibes = NodePath("Head/Camera3D/Vibes")
 player_controller = NodePath("PlayerController")
 collision_shape = NodePath("CollisionShape3D")
 hand_raycast = NodePath("Head/HandRaycast")
 pointer = NodePath("CanvasLayer/CenterContainer/TextureRect")
-default_active_state = null
-tightener_game = ExtResource("2_b0me6")
 
 [node name="PlayerController" type="Node3D" parent="." node_paths=PackedStringArray("c_body", "head")]
 script = ExtResource("1_we6tp")

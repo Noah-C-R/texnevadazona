@@ -130,7 +130,7 @@ max_speed = 15.0
 reverse_acceleration = 700.0
 max_reverse_speed = 5.0
 boost_acceleration = 7000.0
-max_boost_speed = 60.0
+max_boost_speed = 30.0
 break_force = 30.0
 steering_angle = 25.0
 steering_time_sec = 0.4
@@ -338,7 +338,7 @@ shape = SubResource("BoxShape3D_ctoy4")
 
 [node name="CameraFront" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225854, 1.4006, 0.12146)
-fov = 90.0
+fov = 55.0
 
 [node name="Vibes" type="MeshInstance3D" parent="CameraFront"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.568128)
