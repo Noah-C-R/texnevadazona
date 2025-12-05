@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bima2pk75tyt1"]
+[gd_scene load_steps=14 format=3 uid="uid://bima2pk75tyt1"]
 
 [ext_resource type="Script" uid="uid://dwo8i16qh15oe" path="res://Objects/Main Baddie/Stalker.gd" id="1_ofydo"]
 [ext_resource type="PackedScene" uid="uid://by2rncaeoia8j" path="res://Assets/Creatures/Shadow_creature/shadow_version3.gltf" id="2_but51"]
@@ -9,14 +9,15 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vleyf"]
 radius = 1.486
-height = 20.899
+height = 19.0851
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76vug"]
 transparency = 1
+blend_mode = 2
 albedo_color = Color(0.124083, 0.124083, 0.124083, 1)
 emission_enabled = true
 emission = Color(0.0175407, 1.1695e-05, 0.0397156, 1)
-emission_energy_multiplier = 2.75
+emission_energy_multiplier = 0.0
 billboard_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_ohmvl"]
@@ -27,23 +28,42 @@ colors = PackedColorArray(0, 0, 0, 1, 0.109804, 0, 0.407843, 0.886275, 0, 0, 0, 
 gradient = SubResource("Gradient_ohmvl")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnf74"]
-lifetime_randomness = 0.14
-emission_shape = 1
-emission_sphere_radius = 0.7
+lifetime_randomness = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
 spread = 0.7
 initial_velocity_min = 0.4
 initial_velocity_max = 1.2
 gravity = Vector3(0, 0, 0)
-damping_max = 0.05
+damping_max = 1.55
 scale_min = 0.3
 scale_max = 0.6
+color = Color(0.137255, 0.0352941, 0.423529, 0.556863)
 color_ramp = SubResource("GradientTexture1D_3fjpk")
+hue_variation_min = -1.0
+hue_variation_max = -0.1
 turbulence_enabled = true
-turbulence_noise_scale = 0.5
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 0.0
+turbulence_noise_speed_random = 0.59
 
-[sub_resource type="QuadMesh" id="QuadMesh_8gv6u"]
-size = Vector2(0.08, 0.089)
+[sub_resource type="SphereMesh" id="SphereMesh_but51"]
+radius = 0.01
+
+[sub_resource type="Curve" id="Curve_but51"]
+_data = [Vector2(0.169312, 0.179359), 0.0, 0.0, 0, 0, Vector2(0.488095, 0.586061), 0.0, 0.0, 0, 0, Vector2(0.878307, 0.920396), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_nv3gu"]
+shape = 0
+size = 0.248
+section_length = 0.19
+curve = SubResource("Curve_but51")
 
 [node name="Main_Baddie" type="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -66,7 +86,7 @@ skeleton = NodePath("../../../metarig/Skeleton3D/head")
 surface_material_override/0 = ExtResource("4_nv3gu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.815807, -7.14538, 0.584488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27958, -1.18829, -0.00888151)
 shape = SubResource("CapsuleShape3D_vleyf")
 
 [node name="shadow" parent="." instance=ExtResource("2_ofydo")]
@@ -75,10 +95,11 @@ visible = false
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="Shadows" type="GPUParticles3D" parent="."]
-transform = Transform3D(1.39264, 0, 0, 0, 2.90693, 0, 0, 0, 3.08701, 3.38867, -1.3812, 25.9659)
+transform = Transform3D(2.84023, 0, 0, 0, 21.4499, 0, 0, 0, 1.26507, 3.46991, 0.240238, 0.170492)
+visible = false
 material_override = SubResource("StandardMaterial3D_76vug")
 transparency = 0.67
-amount = 2000
+amount = 500
 sub_emitter = NodePath(".")
 lifetime = 1.78
 preprocess = 0.5
@@ -87,4 +108,20 @@ randomness = 1.0
 local_coords = true
 trail_lifetime = 2.33
 process_material = SubResource("ParticleProcessMaterial_fnf74")
-draw_pass_1 = SubResource("QuadMesh_8gv6u")
+draw_pass_1 = SubResource("SphereMesh_but51")
+
+[node name="Shadows2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.2851, 0, 0, 0, 5.92132, 0, 0, 0, 0.954305, 3.45433, 0.741287, 0.185419)
+material_override = SubResource("StandardMaterial3D_76vug")
+transparency = 0.9
+amount = 1390
+sub_emitter = NodePath(".")
+lifetime = 4.18
+preprocess = 0.5
+speed_scale = 0.5
+explosiveness = 0.44
+randomness = 1.0
+local_coords = true
+trail_lifetime = 2.19
+process_material = SubResource("ParticleProcessMaterial_fnf74")
+draw_pass_1 = SubResource("RibbonTrailMesh_nv3gu")
