@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dntb2ay2toglk" path="res://Levels/L2.tscn" id="4_53g8k"]
 [ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
 [ext_resource type="AudioStream" uid="uid://deo3f2udun05c" path="res://Assets/Music/Monster - Building - 48 bars.wav" id="5_11qgy"]
-[ext_resource type="Shader" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
-[ext_resource type="Shader" path="res://Shaders/Warp.gdshader" id="13_6r7q6"]
+[ext_resource type="Shader" uid="uid://cxp0inxqlmxsr" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
+[ext_resource type="Shader" uid="uid://bqf3lb467d4bs" path="res://Shaders/Warp.gdshader" id="13_6r7q6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_53g8k"]
 render_priority = 1

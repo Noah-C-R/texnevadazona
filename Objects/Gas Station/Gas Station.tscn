@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0n88g7mfjjq1"]
+[gd_scene load_steps=14 format=3 uid="uid://d0n88g7mfjjq1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_67gp1"]
-size = Vector3(40, 2, 40)
+[ext_resource type="PackedScene" uid="uid://d3o8854078d3" path="res://Assets/Environment/Buildings/GasStation.gltf" id="1_dtxlb"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_67gp1"]
 data = PackedVector3Array(-20, 1, 20, 20, 1, 20, -20, -1, 20, 20, 1, 20, 20, -1, 20, -20, -1, 20, 20, 1, -20, -20, 1, -20, 20, -1, -20, -20, 1, -20, -20, -1, -20, 20, -1, -20, 20, 1, 20, 20, 1, -20, 20, -1, 20, 20, 1, -20, 20, -1, -20, 20, -1, 20, -20, 1, -20, -20, 1, 20, -20, -1, -20, -20, 1, 20, -20, -1, 20, -20, -1, -20, 20, 1, 20, -20, 1, 20, 20, 1, -20, -20, 1, 20, -20, 1, -20, 20, 1, -20, -20, -1, 20, 20, -1, 20, -20, -1, -20, 20, -1, 20, 20, -1, -20, -20, -1, -20)
@@ -33,13 +32,17 @@ size = Vector3(18, 10, 8)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pl2k3"]
 data = PackedVector3Array(-9, 5, 4, 9, 5, 4, -9, -5, 4, 9, 5, 4, 9, -5, 4, -9, -5, 4, 9, 5, -4, -9, 5, -4, 9, -5, -4, -9, 5, -4, -9, -5, -4, 9, -5, -4, 9, 5, 4, 9, 5, -4, 9, -5, 4, 9, 5, -4, 9, -5, -4, 9, -5, 4, -9, 5, -4, -9, 5, 4, -9, -5, -4, -9, 5, 4, -9, -5, 4, -9, -5, -4, 9, 5, 4, -9, 5, 4, 9, 5, -4, -9, 5, 4, -9, 5, -4, 9, 5, -4, -9, -5, 4, 9, -5, 4, -9, -5, -4, 9, -5, 4, 9, -5, -4, -9, -5, -4)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgleh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_67gp1"]
+material = SubResource("StandardMaterial3D_qgleh")
+size = Vector3(40, 2, 40)
+
 [node name="GasStation" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="Floor" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 6.97799)
-mesh = SubResource("BoxMesh_67gp1")
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 6.97799)
@@ -80,3 +83,11 @@ mesh = SubResource("BoxMesh_j3mab")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.42516, 3.94433, 13.0562)
 shape = SubResource("ConcavePolygonShape3D_pl2k3")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 6.97799)
+mesh = SubResource("BoxMesh_67gp1")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_dtxlb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37359, 0, 0)
