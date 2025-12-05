@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kpmntxedpqot"
+path="res://.godot/imported/wind_howling.mp3-18721a20fad9458e7d17883d0b101040.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/wind_howling.mp3"
+dest_files=["res://.godot/imported/wind_howling.mp3-18721a20fad9458e7d17883d0b101040.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2vlerjnfhcb4"
+path="res://.godot/imported/scratch_windshield.mp3-8154f3fe6c2e778deb2c023167072f01.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/scratch_windshield.mp3"
+dest_files=["res://.godot/imported/scratch_windshield.mp3-8154f3fe6c2e778deb2c023167072f01.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

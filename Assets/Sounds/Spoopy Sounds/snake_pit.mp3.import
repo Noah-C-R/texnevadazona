@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dlo7irmdv2wu3"
+path="res://.godot/imported/snake_pit.mp3-56fa7d58ae47dc14a87c0e669796bd47.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/snake_pit.mp3"
+dest_files=["res://.godot/imported/snake_pit.mp3-56fa7d58ae47dc14a87c0e669796bd47.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

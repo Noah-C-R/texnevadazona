@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bluj1tk6a6fqb"
+path="res://.godot/imported/snake_rattles.mp3-1a413dd0890b8574130f3da93b388407.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Nature Sounds/snake_rattles.mp3"
+dest_files=["res://.godot/imported/snake_rattles.mp3-1a413dd0890b8574130f3da93b388407.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

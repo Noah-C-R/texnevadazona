@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://r0rtv5vjf8qj"
+path="res://.godot/imported/driving_on_dirt.mp3-378eb93c3f56b4f6ccfea5f3a81c5c68.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/driving_on_dirt.mp3"
+dest_files=["res://.godot/imported/driving_on_dirt.mp3-378eb93c3f56b4f6ccfea5f3a81c5c68.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

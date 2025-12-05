@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8t6i6ay3r3w2"
+path="res://.godot/imported/heartbeats.mp3-b938961bc5fd3d50b1d76e2feebd9b2b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/heartbeats.mp3"
+dest_files=["res://.godot/imported/heartbeats.mp3-b938961bc5fd3d50b1d76e2feebd9b2b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

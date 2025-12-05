@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdqryoa7ugch4"
+path="res://.godot/imported/i_see_you_ghost_whisper.mp3-0adc35601ce32fcd2d42778df0c82abd.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/i_see_you_ghost_whisper.mp3"
+dest_files=["res://.godot/imported/i_see_you_ghost_whisper.mp3-0adc35601ce32fcd2d42778df0c82abd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
