@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ba3h7jammnsf0"]
+[gd_scene load_steps=16 format=3 uid="uid://ba3h7jammnsf0"]
 
 [ext_resource type="Shader" uid="uid://bu6xhbm5ahvy1" path="res://Shaders/Pixilate.gdshader" id="1_hmvop"]
 [ext_resource type="PackedScene" uid="uid://b6otghepp8ujy" path="res://Objects/Car/Car.tscn" id="1_u3tya"]
@@ -8,16 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dntb2ay2toglk" path="res://Levels/L2.tscn" id="4_53g8k"]
 [ext_resource type="PackedScene" uid="uid://dk8in46delqm3" path="res://Objects/Player/Player.tscn" id="4_j5go0"]
 [ext_resource type="Shader" uid="uid://cxp0inxqlmxsr" path="res://Shaders/Clouds.gdshader" id="5_m3j4o"]
-[ext_resource type="PackedScene" uid="uid://cxhbdjpfwljfi" path="res://Assets/Environment/Greenery/Desert/Cactus1.gltf" id="9_sehqq"]
-[ext_resource type="PackedScene" uid="uid://cfgjo2q5142re" path="res://Assets/Environment/Greenery/Desert/Cactus2.gltf" id="10_8j1c5"]
-[ext_resource type="PackedScene" uid="uid://cgfm6x01psl10" path="res://Assets/Environment/Greenery/Desert/Cactus3.gltf" id="11_bccto"]
-[ext_resource type="PackedScene" uid="uid://bxhu1ctwbdy21" path="res://Assets/Environment/Greenery/Highlands/Tree1.gltf" id="12_46o8p"]
-[ext_resource type="PackedScene" uid="uid://c86d3gy1miqm4" path="res://Assets/Environment/Greenery/Highlands/Tree2.gltf" id="13_aqu14"]
-[ext_resource type="PackedScene" uid="uid://dclk5p1iusdsp" path="res://Assets/Environment/Greenery/Highlands/Tree4.gltf" id="14_2mkqt"]
-[ext_resource type="PackedScene" uid="uid://bhl5gt3dggiib" path="res://Assets/Environment/Greenery/Highlands/Tree5.gltf" id="15_addja"]
-[ext_resource type="PackedScene" uid="uid://daex7f2bh62hb" path="res://Assets/Environment/Greenery/Swamp/Roots1.gltf" id="16_piqde"]
-[ext_resource type="PackedScene" uid="uid://70ns4ce8xf0y" path="res://Assets/Environment/Greenery/Swamp/Roots2.gltf" id="17_7g5fi"]
-[ext_resource type="PackedScene" uid="uid://cx65txj18wmcp" path="res://Assets/Environment/Greenery/Swamp/Willow1.gltf" id="18_dcke8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_53g8k"]
 render_priority = 1
@@ -126,33 +116,3 @@ grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("4_j5go0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.24728)
-
-[node name="blockbench_export" parent="." instance=ExtResource("9_sehqq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95143, 0.146154, -5.05446)
-
-[node name="blockbench_export2" parent="." instance=ExtResource("10_8j1c5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08499, 0.142597, -3.84566)
-
-[node name="blockbench_export3" parent="." instance=ExtResource("11_bccto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89784, 0.148239, -5.4205)
-
-[node name="blockbench_export4" parent="." instance=ExtResource("12_46o8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0808222, 1.52677, -6.79633)
-
-[node name="blockbench_export5" parent="." instance=ExtResource("13_aqu14")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.809041, 1.53138, -8.29107)
-
-[node name="blockbench_export6" parent="." instance=ExtResource("14_2mkqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66569, 0.152279, -7.01012)
-
-[node name="blockbench_export7" parent="." instance=ExtResource("15_addja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.466, 0.144868, -4.54811)
-
-[node name="blockbench_export8" parent="." instance=ExtResource("16_piqde")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.989956, 0.142326, -3.76173)
-
-[node name="blockbench_export9" parent="." instance=ExtResource("17_7g5fi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1775, 0.13942, -2.77234)
-
-[node name="blockbench_export10" parent="." instance=ExtResource("18_dcke8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01453, 1.51494, -3.06286)
