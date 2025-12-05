@@ -1,22 +1,90 @@
-[gd_scene load_steps=4 format=3 uid="uid://bima2pk75tyt1"]
+[gd_scene load_steps=12 format=3 uid="uid://bima2pk75tyt1"]
 
 [ext_resource type="Script" uid="uid://dwo8i16qh15oe" path="res://Objects/Main Baddie/Stalker.gd" id="1_ofydo"]
-[ext_resource type="ArrayMesh" uid="uid://c60m148ay3ikv" path="res://Assets/Creatures/chupascorpion.obj" id="1_shf17"]
+[ext_resource type="PackedScene" uid="uid://by2rncaeoia8j" path="res://Assets/Creatures/Shadow_creature/shadow_version3.gltf" id="2_but51"]
+[ext_resource type="PackedScene" uid="uid://b6rvvjgq2xdfd" path="res://Assets/Creatures/Shadow_creature/shadow_creature.tscn" id="2_ofydo"]
+[ext_resource type="Material" uid="uid://mc8xxu45alvg" path="res://Assets/Materials/glow_eyes.tres" id="4_nv3gu"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ofydo"]
-size = Vector3(5.46, 13.74, 13.64)
+[sub_resource type="SphereMesh" id="SphereMesh_ofydo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vleyf"]
+radius = 1.486
+height = 20.899
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76vug"]
+transparency = 1
+albedo_color = Color(0.124083, 0.124083, 0.124083, 1)
+emission_enabled = true
+emission = Color(0.0175407, 1.1695e-05, 0.0397156, 1)
+emission_energy_multiplier = 2.75
+billboard_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ohmvl"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.109804, 0, 0.407843, 0.886275, 0, 0, 0, 0.0313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3fjpk"]
+gradient = SubResource("Gradient_ohmvl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnf74"]
+lifetime_randomness = 0.14
+emission_shape = 1
+emission_sphere_radius = 0.7
+direction = Vector3(0, 1, 0)
+spread = 0.7
+initial_velocity_min = 0.4
+initial_velocity_max = 1.2
+gravity = Vector3(0, 0, 0)
+damping_max = 0.05
+scale_min = 0.3
+scale_max = 0.6
+color_ramp = SubResource("GradientTexture1D_3fjpk")
+turbulence_enabled = true
+turbulence_noise_scale = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_8gv6u"]
+size = Vector2(0.08, 0.089)
 
 [node name="Main_Baddie" type="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 motion_mode = 1
 script = ExtResource("1_ofydo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-mesh = ExtResource("1_shf17")
+[node name="ShadowModel" parent="." instance=ExtResource("2_but51")]
+transform = Transform3D(0.418, 0, 0, 0, 0.418, 0, 0, 0, 0.418, 3.17078, 0, 0)
+
+[node name="left_eye" type="MeshInstance3D" parent="ShadowModel"]
+transform = Transform3D(0.311453, 0, 0, 0, 0.281514, 0, 0, 0, 0.195719, 0.166354, 0.808873, -0.138268)
+mesh = SubResource("SphereMesh_ofydo")
+skeleton = NodePath("../../../metarig/Skeleton3D/head")
+surface_material_override/0 = ExtResource("4_nv3gu")
+
+[node name="right_eye" type="MeshInstance3D" parent="ShadowModel"]
+transform = Transform3D(0.299835, 0, 0, 0, 0.285089, 0, 0, 0, 0.237723, 0.57822, 0.816537, -0.131747)
+mesh = SubResource("SphereMesh_ofydo")
+skeleton = NodePath("../../../metarig/Skeleton3D/head")
+surface_material_override/0 = ExtResource("4_nv3gu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.0872426, -0.996187, 0, 0.996187, 0.0872426, 0, 0, 0, 1, -1.61642, 1.79177, 0.234887)
-shape = SubResource("BoxShape3D_ofydo")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.815807, -7.14538, 0.584488)
+shape = SubResource("CapsuleShape3D_vleyf")
+
+[node name="shadow" parent="." instance=ExtResource("2_ofydo")]
+visible = false
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Shadows" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.39264, 0, 0, 0, 2.90693, 0, 0, 0, 3.08701, 3.38867, -1.3812, 25.9659)
+material_override = SubResource("StandardMaterial3D_76vug")
+transparency = 0.67
+amount = 2000
+sub_emitter = NodePath(".")
+lifetime = 1.78
+preprocess = 0.5
+speed_scale = 0.5
+randomness = 1.0
+local_coords = true
+trail_lifetime = 2.33
+process_material = SubResource("ParticleProcessMaterial_fnf74")
+draw_pass_1 = SubResource("QuadMesh_8gv6u")
