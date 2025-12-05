@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3mvpjfr7wew8"
+path="res://.godot/imported/back_page.mp3-732671a98b953130e2fec952b4edbd0f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/UI Sounds/back_page.mp3"
+dest_files=["res://.godot/imported/back_page.mp3-732671a98b953130e2fec952b4edbd0f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

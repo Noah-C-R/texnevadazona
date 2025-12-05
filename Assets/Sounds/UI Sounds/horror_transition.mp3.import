@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bddtj1jxpiw4w"
+path="res://.godot/imported/horror_transition.mp3-f0ef15c1443826db8d08a7cf92358f5a.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/UI Sounds/horror_transition.mp3"
+dest_files=["res://.godot/imported/horror_transition.mp3-f0ef15c1443826db8d08a7cf92358f5a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
