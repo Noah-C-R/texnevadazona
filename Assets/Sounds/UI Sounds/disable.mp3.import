@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0epplgp5dt3b"
+path="res://.godot/imported/disable.mp3-f2f3f62983f41b2542b7228a8c395687.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/UI Sounds/disable.mp3"
+dest_files=["res://.godot/imported/disable.mp3-f2f3f62983f41b2542b7228a8c395687.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

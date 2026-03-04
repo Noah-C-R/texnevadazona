@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b2p3rnguheiat"
+path="res://.godot/imported/loud_radio_glitching.mp3-c53018b12fcd8e42eee1e374559354e8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Spoopy Sounds/loud_radio_glitching.mp3"
+dest_files=["res://.godot/imported/loud_radio_glitching.mp3-c53018b12fcd8e42eee1e374559354e8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

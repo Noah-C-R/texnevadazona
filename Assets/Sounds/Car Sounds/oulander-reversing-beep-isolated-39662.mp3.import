@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfpsq6q8s2hmk"
+path="res://.godot/imported/oulander-reversing-beep-isolated-39662.mp3-a76d2a06b09a2a9110cc12738c5e5726.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/oulander-reversing-beep-isolated-39662.mp3"
+dest_files=["res://.godot/imported/oulander-reversing-beep-isolated-39662.mp3-a76d2a06b09a2a9110cc12738c5e5726.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

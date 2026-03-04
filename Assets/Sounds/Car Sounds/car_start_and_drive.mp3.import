@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://basrjg5agjps5"
+path="res://.godot/imported/car_start_and_drive.mp3-ee49f1aff4a5bb7d56311ecf7b9ed217.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/car_start_and_drive.mp3"
+dest_files=["res://.godot/imported/car_start_and_drive.mp3-ee49f1aff4a5bb7d56311ecf7b9ed217.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -44,9 +44,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "player_controller", "collision_shape", "hand_raycast", "pointer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "vibes", "player_controller", "collision_shape", "hand_raycast", "pointer")]
 script = ExtResource("1_cac6a")
 camera = NodePath("Head/Camera3D")
+vibes = NodePath("Head/Camera3D/Vibes")
 player_controller = NodePath("PlayerController")
 collision_shape = NodePath("CollisionShape3D")
 hand_raycast = NodePath("Head/HandRaycast")
@@ -72,6 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52145, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.285399)
+keep_aspect = 0
 
 [node name="Vibes" type="MeshInstance3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.568128)
@@ -98,6 +100,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2

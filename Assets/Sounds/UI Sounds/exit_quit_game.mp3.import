@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q85ol8wkcoum"
+path="res://.godot/imported/exit_quit_game.mp3-c1d44b49b77035df05461e56e88cb74e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/UI Sounds/exit_quit_game.mp3"
+dest_files=["res://.godot/imported/exit_quit_game.mp3-c1d44b49b77035df05461e56e88cb74e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

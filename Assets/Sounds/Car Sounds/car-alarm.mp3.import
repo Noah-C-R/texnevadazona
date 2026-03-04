@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cja3v540jlb1j"
+path="res://.godot/imported/car-alarm.mp3-ac743eddfd94fc0b408cfaa801de3a0d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/car-alarm.mp3"
+dest_files=["res://.godot/imported/car-alarm.mp3-ac743eddfd94fc0b408cfaa801de3a0d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

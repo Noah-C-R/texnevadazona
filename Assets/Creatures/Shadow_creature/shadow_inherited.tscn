@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://eeeact31fpqo"]
+
+[ext_resource type="PackedScene" uid="uid://by2rncaeoia8j" path="res://Assets/Creatures/Shadow_creature/shadow_version3.gltf" id="1_2yaow"]
+
+[node name="blockbench_export" instance=ExtResource("1_2yaow")]
+
+[node name="Skeleton3D" parent="torso" index="0"]
+bones/1/rotation = Quaternion(0, 0, -0.0218149, 0.999762)
+
+[node name="head_area" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0635333, 0.134965, 0.0821054)
+
+[node name="Skeleton3D" parent="head_area" index="0"]
+bones/0/position = Vector3(0.5, 0.8125, -0.125)
+bones/0/rotation = Quaternion(-0.0557827, 0.066833, 0.0557827, 0.994641)

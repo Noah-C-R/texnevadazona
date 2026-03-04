@@ -5,6 +5,7 @@ extends Node3D
 static var I : Player
 
 @export var camera : Camera3D
+@export var vibes : Node3D
 @export var player_controller : PlayerController
 @export var collision_shape : CollisionShape3D
 @export var hand_raycast : RayCast3D
@@ -24,17 +25,39 @@ func _ready() -> void:
 	player_sm.add_state("Inactive", player_inactive_enter)
 	player_sm.transfer(default_active_state)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Action"):
 		interact()
 
 func interact():
+	var interact_point : Node3D
+	for point in Car.I.interact_manager.interact_points:
+		if point.name == current_carpart_hover:
+			interact_point = point
+	
 	match current_carpart_hover:
 		"CarDoor":
 			player_sm.transfer("Inactive")
 			Car.I.enter_car()
+		"WheelFrontLeft":
+			if start_mash_minigame():
+				interact_point.fix()
+		"WheelFrontRight":
+			if start_mash_minigame():
+				interact_point.fix()
+		"WheelBackLeft":
+			if start_mash_minigame():
+				interact_point.fix()
+		"WheelBackRight":
+			if start_mash_minigame():
+				interact_point.fix()
+
+func start_mash_minigame():
+		print("you fixed it!")
+		return true
 		
-func _physics_process(delta: float) -> void:
+		
+func _physics_process(_delta: float) -> void:
 	if hand_raycast.is_colliding():
 		var col = hand_raycast.get_collider()
 		if col is Car:
@@ -45,6 +68,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				current_carpart_hover = ""
 				set_pointer_color(Color.WHITE)
+		else:
+			set_pointer_color(Color.WHITE)
 
 func set_pointer_color(color : Color):
 	pointer.modulate = color
@@ -54,6 +79,7 @@ func enter_player():
 
 func player_active_enter():
 	camera.make_current()
+	vibes.visible = true
 	player_controller.set_active()
 	collision_shape.disabled = false
 	global_position = Car.I.car_exit.global_position
@@ -61,5 +87,6 @@ func player_active_enter():
 
 func player_inactive_enter():
 	player_controller.set_inactive()
+	vibes.visible = false
 	collision_shape.disabled = true
 	visible = false

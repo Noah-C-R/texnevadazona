@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://34vkrgm0n7la"
+path="res://.godot/imported/seatbelt_alarm.mp3-8468a21be3af0dc181d62540406a1066.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Car Sounds/seatbelt_alarm.mp3"
+dest_files=["res://.godot/imported/seatbelt_alarm.mp3-8468a21be3af0dc181d62540406a1066.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
